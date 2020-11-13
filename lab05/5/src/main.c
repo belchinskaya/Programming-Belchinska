@@ -1,30 +1,46 @@
 #define X 25
 int main () {
 	int num1 = X;
-	int sqrtFor = 0;
-	int sqrtWhile = 0;
-	int sqrtDo = 0;
-	int tempWhile = 1;
-	int tempDo = 1;
-	for (int tempFor = 1; tempFor< num1; tempFor++) {
-		if (tempFor == (tempFor + (num1 / tempFor)) / 2) {
-			sqrtFor = tempFor;
+	int rootFor = 1;
+	int rootWhile = 1;
+	int rootDo = 1;
+	int tempWhile = 0;
+	int tempDo = 0;
+	for (int tempFor = 0; tempFor != rootFor;) {
+		tempFor = num1 / rootFor;
+		if (tempFor == rootFor) {
+			break;
 		}
+	rootFor++;
+	}
+	int resultFor = -1;
+	if (rootFor * rootFor == num1) {
+		resultFor = rootFor; 
 	}
 	num1 = X;
-	while (tempWhile < num1) {
-		if (tempWhile == (tempWhile + (num1 / tempWhile)) / 2) {
-			sqrtWhile = tempWhile;
+	while (tempWhile != rootWhile) {
+		tempWhile = num1 / rootWhile;
+		if (tempWhile == rootWhile) {
+			break;
 		}
-	tempWhile++;
+	rootWhile++;
+	}
+	int resultWhile = -1;
+	if (rootWhile * rootWhile == num1) {
+		resultWhile = rootWhile;
 	}
 	num1 = X;
 	do {
-		if (tempDo == (tempDo + (num1 / tempDo)) / 2) {
-			sqrtDo = tempDo;
+		tempDo = num1 / rootDo;
+		if (tempDo == rootDo) {
+			break;
 		}
-	tempDo++;
-	} while (tempDo < num1);
+	rootDo++;
+	} while (tempDo != rootDo);
+	int resultDo = -1;
+	if (rootDo * rootDo == num1) {
+		resultDo = rootDo;
+	}
 return 0;
 } 
 			
