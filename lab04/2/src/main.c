@@ -8,9 +8,9 @@ int x7 = X * 1000;
 int x2 = x7 % 1000;
 int x6 = x2;
 if (x2>0) {	
-	int x3 = x1 % x6;
-	int x4 = x3 * 100;
-	int x5 = x4 / 100.0;
+	x3 = x1 % x6;
+	x4 = x3 * 100;
+	x5 = x4 / 100.0;
 }
 else if (x2 = 0) {
 	x5 = x3;
