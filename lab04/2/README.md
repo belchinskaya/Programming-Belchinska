@@ -6,7 +6,6 @@
 
 3. **«Обрізати»** результат до другогознака після коми.
 
-@author Davydov V.
 @author Belchinska K.
 @date 16-nov-2020
 @version 1
