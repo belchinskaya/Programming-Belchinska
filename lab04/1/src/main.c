@@ -4,16 +4,21 @@
 //#define S 28.26
 //#define V 113.04
 int main() {
-int L;
-int S;
-int V;
-int formula;
-if (formula == L) {
-	L = 2 * PI * R;
-} else if (formula == S) {
-	S = PI * R * R;
-} else if (formula == V) {
-	V = 4 / 3 * (PI * R * R * R);
-}
-return 0;
+	int F;
+	char str1 = 'L';
+	char str2 = 'S';
+	char str3 = 'V';
+	int result;
+	switch(F) {
+		case 'L':
+			result = 2 * PI * R;
+			break;
+		case 'S':
+			result = PI * R * R;
+			break;
+		case 'V': 
+			result = 4 / 3 * (PI * R * R * R);
+			break;
+	}
+	return 0;
 }
