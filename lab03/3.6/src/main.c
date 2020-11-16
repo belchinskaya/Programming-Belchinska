@@ -1,5 +1,6 @@
-#define N 50
+#define N1 50
+#define N2 52
 int main() {
-	int num = N + (N+1) + (N+2);
+	int num = N1 + (N1 + 1) + N2;
 return 0;
 }
