@@ -26,6 +26,15 @@ int main () {
 		}
 	step_while++;
 	}
+	if (sum == NUM) {
+		result_while = 1;//число досконале
+	}
+	else {
+		result_while = 0;//число не досконале
+	}
+
+
+	
 	int sum_do = 0;
 	int temp_do = 0;
 	int result_do = 0;
@@ -37,5 +46,12 @@ int main () {
 		}
 	step_do++;
 	} while (step_do < NUM);
+	if (sum == NUM) {
+		result_do = 1;//число досконале
+	}
+	else {
+		result_do = 0;//число не досконале
+	}
+
 return 0;
 }
