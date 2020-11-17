@@ -18,8 +18,8 @@ int main () {
 			num1 %= num2;
 		} else if (num1 < num2) {
 			num2 %= num1;
-		nod_while = num1 + num2;
 		}
+	nod_while = num1 + num2;
 	}
 	num1 = X;
 	num2 = Y;
