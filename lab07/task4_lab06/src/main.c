@@ -1,37 +1,32 @@
-#include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
-void numWords(char strIn[], int len);
+#define LEN 6
+int getNumWords(char strIn[]);
 int main() {
 	srand(time(NULL));
-	int const len = 6;
-	char strIn[len];
 	
-	for (int i = 0; i < len - 1; i++) {
-		strIn[i] = rand() % 24 + 11;//заповнюємо заданий масив рандомними символами
+	char strIn[LEN];
+	
+	for (int i = 0; i < LEN - 1; i++) {
+		strIn[i] = rand() % 39 + 32;//заповнюємо заданий масив рандомними символами
 	}
-	strIn[len - 1] = '\0';
+	strIn[LEN - 1] = '\0';
 	
+	int numWords = getNumWords( strIn);
 	
-	
-	numWords(strIn, len);
+
 	return 0;
 }
 
 
-void numWords(char strIn[], int len) {
+int getNumWords(char strIn[]) {
 	
 	int count = 0;
-	char strOut[len];
-	for (int i = 0; i < len;) {//копіюємо заданий масив, щоб використовувати його у функції
-		for (int j = 0; j < len; j++) {
-			strOut[i] = strIn[j];
-			i++;
-		}
-	}
-	for (int i = 0; i < len; i++) {//знайдемо кількість слів за допомогою останньої букви слова
-		if (strOut[i] != ' ' && (strOut[i + 1] == ' ' || strOut[i + 1] == '\0')) {
+	
+	for (int i = 0; i < LEN; i++) {//знайдемо кількість слів за допомогою останньої букви слова
+		if (strIn[i] != ' ' && (strIn[i + 1] == ' ' || strIn[i + 1] == '\0')) {
 			count++;
 		} 
 	}
-	
+	return count;
 } 
