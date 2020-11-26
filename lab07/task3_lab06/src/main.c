@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <time.h>
+#include <stdarg.h>
+
 int compareNums(int arrayNums[], int len);//попереднє оголошення масиву для порівняння чисел
 int copyOne(char numAsString[], int iStart, char numStr[], int sizeWord) {/*масив переписує потрібні значення у результуючий масив (числівник або розряд) починаючи з першого незаповненого елементу*/
 	for (int t = 0; t < sizeWord; t++) {
@@ -102,32 +104,31 @@ void fillStr(char numAsString[], int numIn) {//заповнюємо масив �
 	}
 }
 
-int main() {
+int main(int argc, char const *argv[]) {
 	srand(time(0));
 	int numIn = rand() % 9999 + 1;
 	char arr[50] = {0};/*усі дії у функції будуть проходити з цим масивом*/
 	fillStr(arr, numIn);
 	
 	
-	
-	const int len = 5;//довжинна масиву для порівняння чисел поряд
-	char arrayNums[len];
-	int numOfCompare = compareNums(arrayNums, len);
-	
+
+	//int compare = compareNum(3,1,3,2);
 	return 0;
 	
 	
 }
 
-int compareNums(int arrayNums[], int len) {//порівняти число з наступним, порахувати кількість пар де наступне число більше минулого
-	int count = 0;
-	for (int j = 0; j < len - 1; j++) {//рандомними числами заповнюємо масив
-		arrayNums[j] = rand() % 5 - 2;
-	}
-	for (int i = 0; i < len - 1; i++) {//порівнюємо числа поряд
-		if (arrayNums[i] < arrayNums[i + 1]) {
-			count++;
+int long compareNum(int count, ...) {
+	va_list ap;
+	int j;
+	int long resultCompareNums = 0;
+	va_start(ap, count);
+	for (j = 0; j < count; j++) {
+		if (va_arg(ap, int) < va_arg(ap, int) + 1) {
+			resultCompareNums++;
 		}
 	}
-	return count;//повертаємо результат у функцію main
+	va_end(ap);
+	return resultCompareNums;
+	
 }
