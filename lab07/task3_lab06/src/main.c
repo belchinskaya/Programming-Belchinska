@@ -2,7 +2,8 @@
 #include <time.h>
 #include <stdarg.h>
 
-int compareNums(int arrayNums[], int len);//попереднє оголошення масиву для порівняння чисел
+int compareNum(int count, ...);
+
 int copyOne(char numAsString[], int iStart, char numStr[], int sizeWord) {/*масив переписує потрібні значення у результуючий масив (числівник або розряд) починаючи з першого незаповненого елементу*/
 	for (int t = 0; t < sizeWord; t++) {
 		numAsString[iStart] = numStr[t];
@@ -78,33 +79,34 @@ void fillStr(char numAsString[], int numIn) {//заповнюємо масив �
 	if (size == 4) {
 		num = numIn / 1000;
 		iStart = copyNum(num, numAsString, iStart);//число
-		iStart = copyOne(numAsString, iStart, thousand, 10);//разряд
+		iStart = copyOne(numAsString, iStart, thousand, 10);//розряд
 		size--;
 		num = numIn % 1000;
 	}
 	if (size == 3) {
-		num = num / 100;
+		num = numIn / 100 % 10;
 		iStart = copyNum(num, numAsString, iStart);
 		iStart = copyOne(numAsString, iStart, hundred, 9);
 		size--;
-		num = num % 100;
+		num = numIn % 100;
 	}
 
 	if (size == 2) {
-		num = num / 10;
+		num = numIn / 10 % 10;
 		iStart = copyNum(num, numAsString, iStart);
 		iStart = copyOne(numAsString, iStart, decade, 8);
 		size--;
+		num = numIn % 10;
 	}
 
 	if (size == 1) {
-		num = num % 10;
+		num = numIn % 10;
 		iStart = copyNum(num, numAsString, iStart);
 		numAsString[iStart] = '\0';
 	}
 }
 
-int main(int argc, char const *argv[]) {
+int main() {
 	srand(time(0));
 	int numIn = rand() % 9999 + 1;
 	char arr[50] = {0};/*усі дії у функції будуть проходити з цим масивом*/
@@ -112,23 +114,26 @@ int main(int argc, char const *argv[]) {
 	
 	
 
-	//int compare = compareNum(3,1,3,2);
+	int compare;
+	int count = 3;
+	compare = compareNum(count, 1, 3, 2);
 	return 0;
 	
 	
 }
 
-int long compareNum(int count, ...) {
+int compareNum(int count, ...) {
 	va_list ap;
 	int j;
-	int long resultCompareNums = 0;
+	int num = 0;
+	int resultCompareNums = 0;
 	va_start(ap, count);
 	for (j = 0; j < count; j++) {
-		if (va_arg(ap, int) < va_arg(ap, int) + 1) {
+		if (num < va_arg(ap, int)) {
 			resultCompareNums++;
 		}
 	}
 	va_end(ap);
+
 	return resultCompareNums;
-	
 }
