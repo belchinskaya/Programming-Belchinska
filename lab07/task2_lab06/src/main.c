@@ -34,5 +34,5 @@ void get_prime_num_array(int len, int PD, int KD) {
 			j++;
 		}
 	}
-	get_prime_num_array(len, PD, KD);
+
 }
