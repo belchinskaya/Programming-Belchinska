@@ -4,7 +4,7 @@
 #define LENOUT 15
 
 void get_center(char strIn[], char zap, int lenIn);//попереднє оголошення  функції, функція не повертає результат в main
-void get_center(char strIn2[], char zap, int lenIn);//попереднє оголошення  функції, функція не повертає результат в main
+
 
 int main() {
 	srand(time(NULL));
