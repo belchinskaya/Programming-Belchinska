@@ -1,49 +1,68 @@
+/**
+ * @file lib.c
+ * @brief Файл з реалізацією функцій
+ * для обчислення кількості незменшуванних ділянок, визначення максимальної та переписувааня її у інший масив
+ *
+ * @author Belchynska K.
+ * @date 09-dec-2020
+ * @version 1.0
+ */
 #include "lib.h"
 
-void fillArray(float* arrIn, int lenIn) {
+void fillArrOne(float* arrIn, int lenIn) {
 	srand(time(0));
 	for (int i = 0; i < lenIn; i++) {
-		*(arrIn + i) = rand() % 6 - 2;
+		*(arrIn + i) = (float) rand() / RAND_MAX * (5 - 1) + 1;
 	}
 }
 
-
-int getSequence (float* arrIn, int lenIn) {
+int countOfIncreasingSequences(float* arrayIn, int lenIn) {
 	int count = 0;
-	int countMax = 0;
-	for (int i = 0; i < lenIn; i++) {
-		
-		if (*(arrIn + i) >= 0) {
-			count++;
+	for (int i = 0; i < lenIn - 1; ) {
+		int j;
+		if (*(arrayIn + i) > *(arrayIn + i + 1)) {
+			i++;
+			continue;
 		} else {
-			break;
+			j = i;
+			count++;
+			while (*(arrayIn + j) < *(arrayIn + j + 1)) {
+				j++;
+			}
 		}
+		i = j + 1;
 	}
-	if (countMax < count) {
-		countMax = count;
-	}
-	
-	return &countMax;
-
+	return count;
 }
 
-void getResultArray (float* arrIn, int lenIn, int* countMax, float* arrOut) {
-	int check = countMax;
-	int value = 0;
-	for (int i = 0; i < N; i++) {
-		
-		if (*(arrIn + i) >= 0) {
-			*(arrIn + i) == *(arrOut + i);
-			value++;
+int findMaxIncreasingSequence(float* arrayIn, int lenIn, int* startOfMaxIncreasingSequence) {
+	int lenMax = 0;
+	int lenCurrent;
+	for (int i = 0; i < lenIn - 1; ) {
+		int j;
+		if (*(arrayIn + i) > *(arrayIn + i + 1)) {
+			i++;
+			continue;
 		} else {
-			if ( value != check) {
-				value = 0;
-				for (int j = 0; j < lenIn; j++) {
-					*(arrOut + j) = 0;
-				}
+			lenCurrent = 1;
+			j = i;
+			while (*(arrayIn + j) < *(arrayIn + j + 1)) {
+				lenCurrent++;
+				j++;
 			}
-			break;
 		}
-		
+		if (lenCurrent > lenMax) {
+			lenMax = lenCurrent;
+			*startOfMaxIncreasingSequence = i;
+		}
+		i = j + 1;
+	}
+	return lenMax;
+}
+
+void fillArrayOut(float* arrayIn, int start, float* arrayOut, int lenOut) {
+	for (int i = 0; i < lenOut; i++) {
+		*(arrayOut + i) = *(arrayIn + start);
+		start++;
 	}
 }
