@@ -9,22 +9,22 @@
 * *Опис логічної структури* :
 	Функція 'main' виділяє пам'ть для заданого і результуючого масиву, викликає усі функції для заповнення заданного і результуючого масивів, визначення найбільшої незменшуваної послідовності. Схема алгоритму функції:
 	
-		![рисунок 1](assets/main.png)
+	![рисунок 1](assets/main.png)
 		
 	Функція 'fillArrOne' заповнює заданий масив псевдовипадковими числами. Схема алгоритму функції:
 	
-		![рисунок 2](assets/fillArrOne_.png)
+	![рисунок 2](assets/fillArrOne_.png)
 		
 	Функція 'countOfIncreasingSequences' рахує кількість незменшуваних послідовностей. Схема алгоритму функції:
 		
-		![рисунок 3](assets/countOfIncreasingSequences.png)
+	![рисунок 3](assets/countOfIncreasingSequences.png)
 		
 	Функція 'findMaxIncreasingSequence' шукає найдовшу ділянку. Схема алгоритму функції:
 	
-		![рисунок 4](assets/findMaxIncreasingSequence.png)
+	![рисунок 4](assets/findMaxIncreasingSequence.png)
 		
 	Функція 'fillArrayOut' заповнює результуючий масив. Схема алгоритму функції:
 	
-		![рисунок 5](assets/fillArrayOut_.png)
+	![рисунок 5](assets/fillArrayOut_.png)
 		
 ## Варіанти використання
