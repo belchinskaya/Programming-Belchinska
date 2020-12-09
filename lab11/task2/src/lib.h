@@ -2,9 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define N 5
+#define N 8
 
 void fillArrIn(int* arrIn, int lenIn);
-int getPositiveSequence(int* arrIn, int* arrResult, int lenIn);
-void fillArrayResult (int* arrIn, int lenIn, int* arrResult, int sum);
-int checkSum(int lenIn, int* arrResult);
+int findMaxPositiveSequence(int* arrIn, int lenIn, int* lenOut);
+void fillArrayResult (int* arrIn, int start, int* arrResult, int lenOut);

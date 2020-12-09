@@ -3,65 +3,36 @@
 void fillArrIn(int* arrIn, int lenIn) {
 	srand(time(0));
 	for (int i = 0; i < lenIn; i++) {
-		*(arrIn + i) = rand() % 6 - 2;
+		*(arrIn + i) = rand() % 8 - 2;
 	}
 }
 
 
-int getPositiveSequence(int* arrIn, int* arrResult, int lenIn) {
-	int sumCurrent = 0;
+int findMaxPositiveSequence(int* arrIn, int lenIn, int* lenOut) {
 	int sumMax = 0;
-	
-	for (int i = 0; i < lenIn - 1; i++) {
-		sumCurrent = 0;
-		if (*(arrIn + i) > 0) {
-			
-			sumCurrent += *(arrIn + i);
-			if (sumCurrent >= sumMax) {
-				sumMax = sumCurrent;
-			}
-		
-		} else if (*(arrIn + i) < 0) {
-			
-			break;
-		}
-		
-		
-	}
-	return sumMax;
-}
-
-void fillArrayResult (int* arrIn, int lenIn, int* arrResult, int sum) {
-	int maxSum = sum;
-	
-	for (int j = 0; j < lenIn; j++) {
-		int value = *(arrIn + j);
-		if (*(arrIn + j) > 0) {
-			*(arrResult + j) = value;
-			int checker = checkSum(lenIn, arrResult);
-			if (checker == maxSum) {
-				break;
-			}
-		} else {
-			for (int i = 0; i < lenIn; i++) {
-				*(arrResult + j) = 0;
-			} 
-			break;
-		}
-		
-	}
-} 
-
-int checkSum(int lenIn, int* arrResult) {
-	int summa = 0;
+	int iStart;
 	for (int i = 0; i < lenIn; i++) {
-		summa += *(arrResult + i);
+		int sumCurrent = 0;
+		int lenCurrent = 0;
+		for (int j = i; j < lenIn; j++) {
+			if (*(arrIn + j) > 0) {
+				sumCurrent += *(arrIn + j);
+				lenCurrent++;
+			} else break;
+		}
+		if (sumCurrent > sumMax) {
+			iStart = i;
+			sumMax = sumCurrent;
+			*lenOut = lenCurrent;
+		}
 	}
-	return summa;
+
+	return iStart;
 }
-		
-		
-		
-		
-		
-		
+
+void fillArrayResult (int* arrIn, int start, int* arrResult, int lenOut) {
+	for (int i = 0; i < lenOut; i++) {
+		*(arrResult + i) = *(arrIn + start);
+		start++;
+	}
+}

@@ -1,17 +1,16 @@
-/*Р”Р°РЅРѕ РјР°СЃРёРІ Р· N С†С–Р»РёС… С‡РёСЃРµР». Р—РЅР°Р№С‚Рё Р±РµР·РїРµСЂРІРЅСѓ РїРѕСЃР»С–РґРѕРІРЅС–СЃС‚СЊ РїРѕР·РёС‚РёРІРЅРёС… С‡РёСЃРµР» Сѓ РІС…С–РґРЅРѕРјСѓ РјР°СЃРёРІС–, СЃСѓРјР° РµР»РµРјРµРЅС‚С–РІ СЏРєРѕС— РјР°РєСЃРёРјР°Р»СЊРЅР°, С‚Р° РїРµСЂРµРїРёСЃР°С‚Рё С—С… Сѓ РІРёС…С–РґРЅРёР№ РјР°СЃРёРІ*/
+/*Дано масив з N цілих чисел. Знайти безпервну послідовність позитивних чисел у вхідному масиві, сума елементів якої максимальна, та переписати їх у вихідний масив*/
 
 #include "lib.h"
 
 int main() {
-	int* arrayIn = (int*)malloc(N * sizeof (int*));
-	int* arrayOut = (int*)malloc(N * sizeof (int*));
-	for (int i = 0; i < N; i++) {
-		*(arrayOut + i) = 0;
-	}
+	int* arrayIn = (int*)malloc(N * sizeof(int)); 
 	fillArrIn(arrayIn, N);
-	int maxSum = getPositiveSequence(arrayIn, arrayOut, N);
-	
-	fillArrayResult (arrayIn, N, arrayOut, maxSum);
-	
+
+	int lenOut = 0;
+	int startIndex = findMaxPositiveSequence(arrayIn, N, &lenOut);
+
+	int* arrayOut = (int*)malloc(lenOut * sizeof(int));
+	fillArrayResult(arrayIn, startIndex, arrayOut, lenOut);
+
 	return 0;
 }
