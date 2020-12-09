@@ -13,18 +13,18 @@
 		
 	Функція 'fillArrOne' заповнює заданий масив псевдовипадковими числами. Схема алгоритму функції:
 	
-		![рисунок 2](assets/fillArrOne_)
+		![рисунок 2](assets/fillArrOne_.png)
 		
 	Функція 'countOfIncreasingSequences' рахує кількість незменшуваних послідовностей. Схема алгоритму функції:
 		
-		![рисунок 3](assets/countOfIncreasingSequences)
+		![рисунок 3](assets/countOfIncreasingSequences.png)
 		
 	Функція 'findMaxIncreasingSequence' шукає найдовшу ділянку. Схема алгоритму функції:
 	
-		![рисунок 4](assets/findMaxIncreasingSequence)
+		![рисунок 4](assets/findMaxIncreasingSequence.png)
 		
 	Функція 'fillArrayOut' заповнює результуючий масив. Схема алгоритму функції:
 	
-		![рисунок 5](assets/fillArrayOut_)
+		![рисунок 5](assets/fillArrayOut_.png)
 		
 ## Варіанти використання
