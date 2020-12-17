@@ -1,8 +1,6 @@
-//
-// Created by kate on 15.12.20.
-//
+#include <stdlib.h>
+#include <string.h>
 
-#ifndef LAB13_LIB_H
-#define LAB13_LIB_H
-
-#endif //LAB13_LIB_H
+int getComaCount(char * arr1);
+void sortSequence(char ** strIn, int arraySize);
+void deleteRepeat(char ** strIn, int arraySize);
