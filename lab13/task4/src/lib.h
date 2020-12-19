@@ -4,4 +4,4 @@
 #include <string.h>
 #include <ctype.h>
 
-void getNum(char* strIn, char* strOut);
+void getNum(char* strIn, char* textOut);
