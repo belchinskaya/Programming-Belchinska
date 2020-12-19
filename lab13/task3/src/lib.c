@@ -11,10 +11,9 @@ float getFrequency(char* in, char sym) {
     free(p_text);
 }
 
-void writeTextInResult(char* in, char* reslt) {
+void writeTextInResult(char* in, char* reslt, int len) {
     char * p_string = in;
-    int n = 2 * strlen(in);
-    for (int i = 0; i < n; i + 2) {
+    for (int i = 0; i <; i + 2) {
         for (int j; j < strlen(in); j++) {
             *(reslt + i) = *(p_string + j);
         }
@@ -25,7 +24,7 @@ void writeTextInResult(char* in, char* reslt) {
 void writeFrequency(char* in, char* reslt) {
     char * p_str = in;
     int n = 2 * strlen(in);
-    for (int i = 1; i < n; i + 2) {
+    for (int i = 1; i < strlen(reslt); i + 2) {
         for (int j = 0; j < strlen(in); j++) {
             *(reslt + i) = getFrequency(in, *(p_str + j)) / strlen(in);
         }
