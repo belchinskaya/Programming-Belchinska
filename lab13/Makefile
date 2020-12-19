@@ -1,6 +1,4 @@
 targets = main.bin
-target = leak:
-	valgrind = --leak-check=yes dist/main1.bin
 
 CC = gcc
 C_OPTS = -std=gnu11 -g -Wall -Wextra -Wformat-security -Wfloat-equal -Wshadow -Wconversion -Wlogical-not-parentheses -Wnull-dereference -I./ task1/src/lib.c  task2/src/lib.c task3/src/lib.c task4/src/lib.c
