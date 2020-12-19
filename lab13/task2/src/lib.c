@@ -1,10 +1,18 @@
+/**
+ * @file lib.c
+ * @brief Файл з реалізацією функцій
+ *
+ * @author Belchynska K.
+ * @date 19-dec-2020
+ * @version 1.0
+ */
 #include "lib.h"
 
 
 int getComaCount(char * arr1) {
     int count = 0;
     for (int i = 0; ; i++) {
-        if (*(arr1 + i) == ",") {
+        if ((*(arr1 + i) = strchr(arr1, ',')) != NULL) {
             count++;
         }
     }
@@ -12,10 +20,10 @@ int getComaCount(char * arr1) {
 }
 
 void sortSequence(char ** strIn, int arraySize) {
-    for (int i = 0; i < arraySize; ++i) {
+    for (int i = 0; i < arraySize; i++) {
         for (int j = 0; j < arraySize - 1; j++) {
             if (strcmp(*(strIn + j), *(strIn + j + 1)) > 0) {
-                char temp[50];
+                char temp[11];
                 strcpy(temp, *(strIn + j));
                 strcpy(*(strIn + j), *(strIn + j + 1));
                 strcpy(*(strIn + j + 1), temp);
@@ -26,7 +34,7 @@ void sortSequence(char ** strIn, int arraySize) {
 
 void deleteRepeat(char ** strIn, int arraySize) {
     for (int i = 0; i < arraySize; i++) {
-        if (*(strIn + i) == *(strIn + i +1)) {
+        if (*(strIn + i) == *(strIn + i + 1)) {
              strcpy(*(strIn + i), "\0");
         }
     }
@@ -36,6 +44,7 @@ void deleteRepeat(char ** strIn, int arraySize) {
     for (int i = 0; i < arraySize - 1; i++) {
         if (strlen(*(strIn + i)) > 0) {
              strcat(textOut, *(strIn + i));
+             strcat(textOut, ",");
              strcat(textOut, " ");
              
         }
