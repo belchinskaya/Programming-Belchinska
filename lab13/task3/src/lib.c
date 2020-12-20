@@ -1,42 +1,98 @@
-#include "lib.h"
+/*
+ * @file lib.c
+ * @brief Файл з реалізацією функцій
+ *
+ * @author Belchynska K.
+ * @date 20-dec-2020
+ * @version 1.0
+ */
 
-float getFrequency(char* in, char sym) {
-    float countSymbol = 0;
-    char * p_text = in;
-    while (p_text = strchr(p_text, sym) != NULL) {
-        countSymbol++;
-        p_text++;
-    }
-    free(p_text);
-    free(in);
-    return countSymbol;
+#include"lib.h"
 
-}
-
-void writeTextInResult(char* in, char* text_out) {
-    char * p_string = in;
-    for (int i = 0; i < strlen(text_out); i++) {
-
-        for (int j; j < strlen(in); j++) {
-            *(reslt + i) = '\0';
-            i++;
-            *(reslt + i) = *(p_string + j);
-        }
-    }
-    free(in);
-    free(reslt);
-    free(p_string);
-}
-
-void writeFrequency(char* in, char* reslt) {
-    char * p_str = in;
-    
-    for (int i = 0; i < strlen(reslt); i++) {
+int countTextLength(char* arr) {
+    int count = 0;
+    int i = 0;
+    while (*(arr + i) != NULL) {
+        count++;
         i++;
-        for (int j = 0; j < strlen(in); j++) {
-            *(reslt + i) = getFrequency(in, (float)*(p_str + j)) / strlen(in);
+    }
+    return count;
+}
+
+int countOfUniqueElements(char* arr, int size) {
+    int count = 0;
+    int i = 0;
+    int k = 0;
+    char* arrTemp = (char*)malloc(size * sizeof(char));
+    strncpy(arrTemp, arr, 1);
+
+    for (i = 0; i < size + 1; i++) {
+        char value = *(arr + i);
+        bool check = checker(arrTemp, k, value);
+        for (int j = i + 1; j < size + 1; j++) {
+            if (check == false) {
+                *(arrTemp + k) = value;
+                count++;
+                k++;
+                break;
+            }
         }
     }
-
-    free(p_str);
+    free(arrTemp);
+    return count;
 }
+
+bool checker(char* arr, int currentIndex, char value) {
+    bool flag = false;
+    for (int i = 0; i < currentIndex; i++) {
+        if (*(arr + i) == value) {
+            flag = true;
+        }
+    }
+    return flag;
+}
+
+void getsymbols(char* strIn, int sizeIn, char* symbols, int sizeOut) {
+    int i;
+    int k = 0;
+    for (i = 0; i < sizeIn + 1; i++) {
+        char value = *(strIn + i);
+        bool check = checker(symbols, k, value);
+        for (int j = i + 1; j <= sizeOut; j++) {
+            if (check == false) {
+                *(symbols + k) = value;
+                k++;
+                break;
+            }
+        }
+    }
+    *(symbols + k) = '\0';
+}
+
+void getSymbolsCounts(char* strIn, int sizeIn, char* elements, int* elCounts, int sizeOut) {
+
+    for (int i = 0; i < sizeOut; i++) {
+        //char value = *(elements + i);
+        for (int j = 0; j < sizeIn; j++) {
+            if (*(elements + i) == *(strIn + j)) {
+                *(elCounts + i) += 1;
+            }
+        }
+    }
+}
+
+void fillZeros(int* arr, int size) {
+    for (int i = 0; i < size; i++) {
+        *(arr + i) = 0;
+    }
+}
+
+void getSymbolsFrequencies(int* elCounts, double* elFreaqs, int size, int totalCount) {
+    for (int i = 0; i < size; i++) {
+        int current = *(elCounts + i);
+        *(elFreaqs + i) = (double)current / totalCount;
+    }
+}
+
+
+
