@@ -1,6 +1,6 @@
 /**
  * @file lib.h
- * @brief Файл з прототипами функцій
+ * @brief Ôàéë ç ïðîòîòèïàìè ôóíêö³é
  *
  * @author Belchynska K.
  * @date 19-dec-2020
@@ -25,7 +25,7 @@ int getComaCount(char * arr1);
  * @param strIn приймає масив вказівників на масив вказівників на строки
  * @param arraySize приймає довжину цього масиву
  */
-void sortSequence(char ** strIn, int arraySize);
+void sortSequence(char **strIn, int arraySize);
 
 /**
  * Функція {@link deleteRepeat}
@@ -34,4 +34,13 @@ void sortSequence(char ** strIn, int arraySize);
  * @param strIn приймає масив вказівників на масив вказівників на строки
  * @param arraySize приймає довжину цього масиву
  */
-void deleteRepeat(char ** strIn, int arraySize);
+int deleteRepeat(char **strIn, int arraySize);
+
+/**
+ * Функція {@link fillArrayOut} запонвює резульиуючий масив неповторюваними значеннями
+ * Приймає:
+ * @param strIn заданий масив
+ * @param arraySize довжину заданого масиву
+ * @param result результуючий масив
+ */
+void fillArrayOut(char **strIn, int arraySize, char *result);

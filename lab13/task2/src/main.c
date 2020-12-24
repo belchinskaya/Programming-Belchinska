@@ -28,36 +28,53 @@
  * - обчислення кількості слів {@link temp1}
  * - звільнення пам'яті для масиву вказівників на масив вазівників {@link strIn}
  * - звільнення пам'яті для масиву вказівників на строки та заповнення строк словами із заданого тексту
+ * - визначення довжини прізвища 
  * - виклик функції {@link sortSequence}
  * - виклик функції {@link deleteRepeat}
+ * - виклик функції для заповнення результуючого масиву {@link fillArrayOut}
  * - звільнення пам'яті для викорастоного динамічного масиву
  * @return успішний код повернення з програми (0)
  */
 int main() {
-    char surname[] = "Бібік, Акулібаба, Зажерило, Бібік, Черепок, Чупилко, Гаврик, Шжопов,  Шмонько, Гаврик";
-    char *p_surname = surname;
+	char surname[] = "Бібік,Акулібаба,Зажерило,Бібік,Черепок,Чупилко,Гаврик,Шжопов,Шмонько,Гаврик";
+	char *p_surname = surname;
 
-    int comaCount = getComaCount(surname);
+	int comaCount = getComaCount(p_surname);
+	int temp1 = comaCount + 1;
 
-    int temp1 = comaCount + 1;
-    int count = 0;
-    char ** strIn = (char**) malloc(temp1 * sizeof(char*));
-    for (int i = 0; i < temp1; i++) {
-        char *tempSurname = strtok(p_surname + count, ",");
-        count += strlen(tempSurname) + 1;
-        *(strIn + i) = (char*) malloc((strlen(tempSurname) + 1) * sizeof(char));
-        strcpy(*(strIn + i), tempSurname);
-        if (tempSurname == NULL) {
-            break;
-        }
-    }
+	char **strIn = (char**) malloc(temp1 * sizeof(char*));
+	char *temp = strtok(p_surname, ",");
+	int count = 0;
+	int i = 0;
+	*(strIn + i) = (char*) malloc ((strlen(temp) + 1) * sizeof(char));
+	strcpy(*(strIn + i), temp);
+	i++;
 
-    sortSequence(strIn, count);
-    deleteRepeat(strIn, count);
+    
+	while (p_surname != NULL) {
+		count += strlen(p_surname) + 1;
+		p_surname = surname;
+		p_surname = strtok(p_surname + count, ",");
+		if (p_surname == NULL) {
+			break;
+        	}
+		*(strIn + i) = (char*) malloc((strlen(p_surname) + 1) * sizeof(char));
+		strcpy(*(strIn + i), p_surname);
+		i++;
+	}
 
-    for (int i = 0; i < temp1; i++) {
-        free(*(strIn + i));
-    }
-    free(strIn);
-    return 0;
+	sortSequence(strIn, temp1);
+	int lenResult = deleteRepeat(strIn, temp1);
+	char* result = (char*) malloc (lenResult * sizeof(char));
+	for (int i = 0; i < lenResult; i++) {
+		*(result + i) = '\0';
+	}
+	fillArrayOut(strIn, temp1, result);
+
+	for (int i = 0; i < temp1; i++) {
+		free(*(strIn + i));
+	}
+	free(strIn);
+	free(result);
+	return 0;
 }

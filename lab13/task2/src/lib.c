@@ -9,13 +9,17 @@
 #include "lib.h"
 
 
-int getComaCount(char * arr1) {
+int getComaCount(char* arr1) {
     int count = 0;
-    for (int i = 0; ; i++) {
-        if ((*(arr1 + i) = strchr(arr1, ',')) != NULL) {
-            count++;
-        }
-    }
+	int i = 0;
+	
+	do {
+		if (*(arr1 + i) == ',') {
+			count++;
+		}
+		i++;
+	} while (*(arr1 + i) != '\0');
+
     return count;
 }
 
@@ -32,21 +36,24 @@ void sortSequence(char ** strIn, int arraySize) {
     }
 }
 
-void deleteRepeat(char ** strIn, int arraySize) {
+int deleteRepeat(char ** strIn, int arraySize) {
+	int lenOut = 0;
     for (int i = 0; i < arraySize; i++) {
-        if (*(strIn + i) == *(strIn + i + 1)) {
+        if (strcmp(*(strIn + i), *(strIn + i + 1)) == 0) {
              strcpy(*(strIn + i), "\0");
-        }
+        } else {
+			lenOut += strlen(*(strIn + i)) + 1;
+		}
     }
+	return lenOut;
+}
 
-    char textOut[100] = {0};
-
-    for (int i = 0; i < arraySize - 1; i++) {
-        if (strlen(*(strIn + i)) > 0) {
-             strcat(textOut, *(strIn + i));
-             strcat(textOut, ",");
-             strcat(textOut, " ");
-             
-        }
-    }
+void fillArrayOut(char **strIn, int arraySize, char *result) {
+	for (int i = 0; i < arraySize; i++) {
+		if (strcmp(*(strIn + i), "\0") != 0) {
+			strcat(result, *(strIn + i));
+			strcat(result, ",");
+		}
+	}
+	*(result + strlen(result) - 1) = '\0';
 }
