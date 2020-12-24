@@ -12,7 +12,7 @@
 #include<string.h>
 #include<stdlib.h>
 #include<stdio.h>
-#include <stdbool.h>
+//#include <stdbool.h>
 
 /**
  *
@@ -66,7 +66,7 @@ void getsymbols(char* strIn, int sizeIn, char* symbols, int sizeOut);
 void getSymbolsCounts(char* strIn, int sizeIn, char* elements, int* elCounts, int sizeOut);
 
 /**
- * Функція ініцолізує результуючий масив
+ * Функція ініціолізує результуючий масив
  * @param arr приймає заданий масив
  * @param size приймає довжину заданого масиву
  */

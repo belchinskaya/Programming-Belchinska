@@ -58,7 +58,7 @@ void getsymbols(char* strIn, int sizeIn, char* symbols, int sizeOut) {
     for (i = 0; i < sizeIn + 1; i++) {
         char value = *(strIn + i);
         bool check = checker(symbols, k, value);
-        for (int j = i + 1; j <= sizeOut; j++) {
+        for (int j = i + 1; j <= sizeIn; j++) {
             if (check == false) {
                 *(symbols + k) = value;
                 k++;
@@ -93,6 +93,3 @@ void getSymbolsFrequencies(int* elCounts, double* elFreaqs, int size, int totalC
         *(elFreaqs + i) = (double)current / totalCount;
     }
 }
-
-
-

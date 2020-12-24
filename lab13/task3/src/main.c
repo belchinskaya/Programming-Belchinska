@@ -42,7 +42,7 @@
 
 int main() {
 
-    char text[] = "abrakadabra";
+    char text[] = "abbcccddddaaabbbb";
     char* pText = text;
 
     int textLength = countTextLength(pText);
@@ -67,13 +67,4 @@ int main() {
     free(symbolsFrequency);
     return 0;
 }
-/*
-int main() {
-    char* text = "abrakadabra";
-    char* result = (char*)malloc(strlen(text) * 2 * sizeof(char));
-    writeTextInResult(text, result);
-    writeFrequency(text, result);
 
-    return 0;
-}
-*/
