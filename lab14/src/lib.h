@@ -13,7 +13,11 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include <stdbool.h>
-
+#include <errno.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <dirent.h>
 /**
  *
  * Функція для обчислення довжини заданого масиву
@@ -21,7 +25,7 @@
  * @param arr приймає заданий масив
  * @return довжину масиву
  */
-int countTextLength(char* arr);
+int getFileLength(FILE* file);
 
 /**
  *
@@ -52,7 +56,7 @@ bool checker(char* arr, int currentIndex, char value);
  * @param symbols приймає унікальні символи
  * @param sizeOut приймає розмір результуючого масиву
  */
-void getsymbols(char* strIn, int sizeIn, char* symbols, int sizeOut);
+void getSymbols(char* strIn, int sizeIn, char* symbols, int sizeOut);
 
 /**
  *
@@ -80,4 +84,11 @@ void fillZeros(int* arr, int size);
  * @param size
  * @param totalCount
  */
-void getSymbolsFrequencies(int* elCounts, double* elFreaqs, int size, int totalCount);
+void getSymbolsFrequencies(int* elCounts, float* elFreaqs, int size, int totalCount);
+
+int getFileLength();
+
+void readFromFile(char* filename, char* pText, int bufSize);
+void writeToFile(FILE* f, char* filename, float* arr, int size);
+
+void listdir(const char *name, int indent);

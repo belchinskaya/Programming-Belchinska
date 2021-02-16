@@ -42,29 +42,57 @@
 
 int main() {
 
-    char text[] = "abbcccddddaaabbbb";
-    char* pText = text;
 
-    int textLength = countTextLength(pText);
+    char* filenameIn = (char*)malloc(100 * sizeof(char));
+    char* filenameOut = (char*)malloc(100 * sizeof(char));
+
+    char* pText = (char*)malloc(10000 * sizeof(char));
+
+ /*   for (int i = 0; i < 100; i++) {
+        scanf("%s", filenameIn + i);
+    }*/
+
+
+    printf("Введіть назву файлу для вирахування частоти: \n" );
+    scanf("%s", filenameIn);
+    printf("Введіть назву файлу для запису результату: \n" );
+    scanf("%s", filenameOut);
+
+    //readFromFile(filenameIn, pText, 100);
+//
+    FILE *file = fopen(filenameIn, "r");
+    int textLength = getFileLength(file);
+    readFromFile(filenameIn, pText, textLength);
     int uniqueElCount = countOfUniqueElements(pText, textLength);
 
     char* symbols = (char*) malloc ((uniqueElCount + 1) * sizeof(char));
     int* symbolsCounts = (int*) malloc (uniqueElCount * sizeof(int));
-    double* symbolsFrequency = (double*) malloc (uniqueElCount * sizeof(double));
-    fillZeros(symbolsCounts, uniqueElCount);
+    float* symbolsFrequency = (float*) malloc (uniqueElCount * sizeof(float));
 
-    getsymbols(pText, textLength, symbols, uniqueElCount);
+
+
+
+    fillZeros(symbolsCounts, uniqueElCount);
+    getSymbols(pText, textLength, symbols, uniqueElCount);
     getSymbolsCounts(pText, textLength, symbols, symbolsCounts, uniqueElCount);
     getSymbolsFrequencies(symbolsCounts, symbolsFrequency, uniqueElCount, textLength);
 
 
 
+    writeToFile(file, filenameOut, symbolsFrequency, uniqueElCount);
+    char* dirName = (char*)  malloc (100 * sizeof(char));
+    printf("Введіть назву файлу для зчитування: \n");
+    scanf("%s", dirName);
+    listdir(dirName, 0);
 
-
+//
     free(pText);
     free(symbols);
     free(symbolsCounts);
     free(symbolsFrequency);
+    free(filenameIn);
+    free(filenameOut);
+    free(dirName);
     return 0;
 }
 
