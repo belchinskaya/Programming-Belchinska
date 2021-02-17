@@ -128,51 +128,9 @@ void readFromFile(char* filename, char* pText, int bufSize) {
     for (ssize_t i = 0; i < bufSize; i++) {
         fscanf(f, "%s", pText + i);
     }
-
+    fclose(f);
 
 }
-
-/*void getTree(char* dirName) {
-    DIR *d;
-    d = opendir(dirName);
-    if (d == NULL) {
-        printf("Неможливо відкрити файл через: %s", strerror(errno));
-        exit(1);
-    }
-
-    struct dirent *entry;
-    while ((entry = readdir(d)) != NULL) {
-        printf("- %s\n", dirName);
-
-        struct stat statbuf;
-        stat(dirName, &statbuf);
-
-        if (S_ISDIR(statbuf.st_mode))
-            getTree(dirName);
-    }
-
-
-
-    closedir(d);
-
-
-
-}*/
-
-/*int getFileVolume(char *dirName) {
-    FILE *d;
-    d = fopen(dirName, "r");
-    //readdir(d);
-    if (d == NULL) {
-        printf("Неможливо відкрити файл через: %s", strerror(errno));
-        exit(1);
-    }
-    seekdir(d, SEEK_END);
-    long count = ftell(d);
-    printf("Filesize: %ld \n", count);
-    fclose(d);
-
-}*/
 
 void listdir(const char *name, int indent) {
     int count = 0;

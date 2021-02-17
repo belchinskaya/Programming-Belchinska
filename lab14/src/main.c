@@ -48,11 +48,6 @@ int main() {
 
     char* pText = (char*)malloc(10000 * sizeof(char));
 
- /*   for (int i = 0; i < 100; i++) {
-        scanf("%s", filenameIn + i);
-    }*/
-
-
     printf("Введіть назву файлу для вирахування частоти: \n" );
     scanf("%s", filenameIn);
     printf("Введіть назву файлу для запису результату: \n" );
