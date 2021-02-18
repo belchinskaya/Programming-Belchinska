@@ -1,3 +1,0 @@
-/home/kate/Programming-Belchynska/lab15/task1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/kate/Programming-Belchynska/lab15/task1/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/kate/Programming-Belchynska/lab15/task1/cmake-build-debug/CMakeFiles/task1.dir
