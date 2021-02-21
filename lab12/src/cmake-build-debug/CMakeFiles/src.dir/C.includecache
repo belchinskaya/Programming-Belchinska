@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/kate/Programming-Belchynska/lab12/src/lib.c
+unistd.h
+-
+lib.h
+/home/kate/Programming-Belchynska/lab12/src/lib.h
+
+/home/kate/Programming-Belchynska/lab12/src/lib.h
+stdlib.h
+-
+time.h
+-
+stdio.h
+-
+syscall.h
+-
+string.h
+-
+
