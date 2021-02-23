@@ -4,21 +4,24 @@
  * для обчислення кількості незменшуванних ділянок, визначення максимальної та переписувааня її у інший масив
  *
  * @author Belchynska K.
- * @date 09-dec-2020
+ * @date 23-feb-2021
  * @version 1.0
  */
 #include <unistd.h>
 #include "lib.h"
 
 void fillArrOne(float * arrIn, int lenIn) {
-	printf("Введіть елементи масиву: \n");
+
+	fwrite("Введіть елементи масиву: \n", sizeof(char), 45, stderr);
+
 	for (int i = 0; i < lenIn; i++) {
-		scanf("%s", arrIn + i);
+		scanf("%f", arrIn + i);
 	}
+	char temp[100];
     for (int i = 0; i < lenIn; i++) {
         //sscanf("%f", arrIn);
-        fgets(arrIn, lenIn + 1, stdin);
-        *(arrIn + i) = getc(stdin);
+        //fgets(temp, lenIn + 1, stdin);
+        //*(arrIn + i) = getc(stdin);
     }
 	//puts("Введіть елементи масиву: ");
     /*for (int i = 0; i < lenIn; i++) {
@@ -30,7 +33,7 @@ void fillArrOne(float * arrIn, int lenIn) {
 
 }
 
-int countOfIncreasingSequences(char* arrIn, int lenIn) {
+int countOfIncreasingSequences(float * arrIn, int lenIn) {
 	int count = 0;
 	for (int i = 0; i < lenIn - 1; ) {
 		int j;
@@ -47,7 +50,7 @@ int countOfIncreasingSequences(char* arrIn, int lenIn) {
 		i = j + 1;
 	}
 
-    printf("\nКількість незменшуваних послідовностей: %d\n", count);
+
 	return count;
 }
 
@@ -78,54 +81,33 @@ int findMaxIncreasingSequence(float* arrayIn, int lenIn, int* startOfMaxIncreasi
 	return lenMax;
 }
 
-void fillArrayOut(float* arrayIn, int start, char * arrayOut1, int lenOut) {
+void fillArrayOut(float* arrayIn, int start, float * arrayOut1, int lenOut) {
+    char arrForPrint[50];
     for (int i = 0; i < lenOut; i++) {
         *(arrayOut1 + i) = *(arrayIn + start);
         start++;
-        sscanf("%s", *(arrayOut1 + i));
-    }
+       // sprintf(arrForPrint, "%f", *(arrayOut1 + i));
 
+    }
 }
 
-/*int read(int lenIn) {
 
-    fread(&lenIn, 1, 1, stdin);
-    char* n;
-    gcvt(lenIn, 5, n);
-    n = getc(stdin);
-    int n1;
-    n1 = atoi(n);
-    return n1;
-}*/
 
-void printArrayOut(float* arrayIn, int start, char * arrayOut, int arrayLength){
+void printArrayOut(float* arrayIn, int start, float * arrayOut, int arrayLength){
     printf("\nРезультуючий масив:\n");
 
-
+    char temp[50];
     for (int i = 0; i < arrayLength; i++) {
         *(arrayOut + i) = *(arrayIn + start);
-        sprintf("%s ", *(arrayOut + i));
+        sprintf(temp,"%f ", *(arrayOut + i));
         start++;
     }
     for (int i = 0; i < arrayLength; i++) {
-        sscanf("%s", arrayIn + start);
+        scanf("%f", arrayIn + start);
         *(arrayOut + i) = *(arrayIn + start);
-        putc(*(arrayOut + i), stdout);
-        write(arrayOut + i, sizeof(char), arrayLength + 1);
+        //sprintf(temp, "%f", *(arrayOut +i));
+        puts(temp);
+        fwrite(&temp, sizeof(char), arrayLength + 1, stdout);
 
     }
-
-    for (int j = 0; j < arrayLength; j++) {
-
-    }
-  //printf("%f", *(arrayOut + i));
-        //write(arrayOut + i, sizeof(arrayOut), 1, stderr);
-
-        //char sArrayOut[50];
-        //printf(sArrayOut, "%f", *(arrayOut + i));
-        //puts(sArrayOut);
-
-
-
-
 }

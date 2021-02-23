@@ -7,7 +7,7 @@
  * **Підрахувати** кількість ділянок заданого масиву з N речовинних чисел, які утворюють безперервні послідовності чисел з незменшуваними значеннями. Максимальну ділянку переписати в інший масив.
  *
  * @author Belchynska K.
- * @date 09-dec-2020
+ * @date 23-feb-2021
  * @version 1.0
  */
  
@@ -16,7 +16,7 @@
  * @brief Файл з викликом усіх функцій
  * використаних для заповнення результуючого масиву і підрахування кількості ділянок
  * @author Belchynska K.
- * @date 09-dec-2020
+ * @date 23-feb-2021
  * @version 1.0
  */
 #include "lib.h"
@@ -41,41 +41,51 @@
  */
 
 int main() {
-    printf("Лабораторна робота #12 \"Взаємодія з користувачем шляхом механізму введення-виведення\"\nБельчинська Катерина\n");
+    printf("Лабораторна робота #12 \nБельчинська Катерина\n");
+    puts("Взаємодія з користувачем шляхом механізму введення-виведення");
+    fwrite("КІТ-320", sizeof(char), 9, stdout);
     int N;
+   //long N3;
+    //char N2;
+    //char lenStr[2];
+    //lenStr[0] = N2;
+    //lenStr[1] = '\0';
+    printf("\nВведіть довжину масиву: ");
 
-    printf("Введіть довжину масиву: ");
 
 
     scanf("%d", &N);
-
-
-
+    //N2 = getc(stdin);
+    //N3 = strtol(lenStr, NULL, 10);
 
 	float* arrayIn = (float*)malloc(N * sizeof(float));
 	fillArrOne(arrayIn, N);
 
 	int countOfSequences = countOfIncreasingSequences(arrayIn, N);
 
+    printf("\nКількість незменшуваних послідовностей: %d", countOfSequences);
+
 	int startOfMaxIncreasingSequence = 0;
 	int lenOut = findMaxIncreasingSequence(arrayIn, N, &startOfMaxIncreasingSequence);
 
-	char * arrayOut1 = (char *)malloc(lenOut * sizeof(char));
+	float * arrayOut1 = (float *)malloc(lenOut * sizeof(float ));
 
 	fillArrayOut(arrayIn, startOfMaxIncreasingSequence, arrayOut1, lenOut);
 
 
 	//fwrite(&countOfSequences, sizeof(countOfSequences), 1, stderr);
-    char sCountOfSequences[50];
-    printf(sCountOfSequences, "%d", countOfSequences);
-    puts(sCountOfSequences);
+    //char sCountOfSequences[50];
+    //printf( "Кількість послідовностей: %d", countOfSequences);
 
-    printf("\nРезультуючий масив:\n");
+
+
+    //puts("Результуючий масив: ");
 
 
 
     printArrayOut(arrayIn, startOfMaxIncreasingSequence, arrayOut1, lenOut);
-
+    free(arrayIn);
+    free(arrayOut1);
 	return 0;
 }
 

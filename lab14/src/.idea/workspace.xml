@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="src" targetName="src" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="658cd59f-2144-4789-a2ef-919c9a4f6237" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/src.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../lab15/task1/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab08_09_10/doc/lab08_09_10.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../../lab08_09_10/doc/lab08_09_10.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab08_09_10/doc/lab08_09_10.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../lab08_09_10/doc/lab08_09_10.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab11/doc/lab11.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../../lab11/doc/lab11.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab11/task1/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../lab11/task1/src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab11/task2/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../lab11/task2/src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab11/task3/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../lab11/task3/src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab13/task3/src/lib.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../lab13/task3/src/lib.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab13/task4/src/lib.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../lab13/task4/src/lib.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab15/task1/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../lab15/task1/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab15/task1/src/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../../lab15/task1/src/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab15/task1/src/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../lab15/task1/src/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab15/task1/src/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../lab15/task1/src/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab15/task1/src/lib.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../lab15/task1/src/lib.c" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1oIhl0j9sBsqNwxmEKyxDF9e1xb" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="src" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="src" TARGET_NAME="src" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="src" RUN_TARGET_NAME="src">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="658cd59f-2144-4789-a2ef-919c9a4f6237" name="Default Changelist" comment="" />
+      <created>1612980159209</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1612980159209</updated>
+      <workItem from="1612980160766" duration="13307000" />
+      <workItem from="1613062374748" duration="13024000" />
+      <workItem from="1613251351363" duration="855000" />
+      <workItem from="1613289051147" duration="19531000" />
+      <workItem from="1613412887597" duration="7224000" />
+      <workItem from="1613480931383" duration="4240000" />
+      <workItem from="1613499403403" duration="9791000" />
+      <workItem from="1613581254430" duration="1338000" />
+      <workItem from="1613678480313" duration="500000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

@@ -6,7 +6,7 @@
  * для обчислення кількості незменшуванних ділянок, визначення максимальної та переписувааня її у інший масив
  *
  * @author Belchynska K.
- * @date 09-dec-2020
+ * @date 23-feb-2021
  * @version 1.0
  */
 #include <stdlib.h>
@@ -28,7 +28,7 @@ void fillArrOne(float * arrayIn, int lenIn);
 * {@link count} підраховує кількість ділянок в заданому масиві з незменшуванними значеннями 
 * @return {@link count} кількість необхідних ділянок
 */
-int countOfIncreasingSequences(char* arrayIn, int lenIn);
+int countOfIncreasingSequences(float * arrayIn, int lenIn);
 
 /**
 * Визначення кількості елементів у найдовшій незменшуваній ділянці
@@ -39,7 +39,8 @@ int findMaxIncreasingSequence(float* arrayIn, int lenIn, int* startOfMaxIncreasi
 /**
 * заповнення результуючого масиву максимальною послідовністю
 */
-void fillArrayOut(float* arrayIn, int start, char* arrayOut1, int lenOut);
+
+void fillArrayOut(float* arrayIn, int start, float * arrayOut1, int lenOut);
 
 
-void printArrayOut(float* arrayIn, int start, char * arrayOut, int arrayLength);
+void printArrayOut(float* arrayIn, int start, float * arrayOut, int arrayLength);
