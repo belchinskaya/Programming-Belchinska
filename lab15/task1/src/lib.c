@@ -1,53 +1,85 @@
 #include "lib.h"
-long fileSize(FILE * file) {
+/*long fileSize(FILE * file) {
 
-    file = fopen("/home/kate/Programming-Belchynska/lab15", "r");
+    file = fopen("/home/kate/Programming-Belchynska/lab15/instruments.txt", "r");
     fseek(file, 0, SEEK_END);
     long count = ftell(file);
     printf("Filesize: %ld \n", count);
     fclose(file);
     return count;
-}
+}*/
 
 
 
-void readFromFile(struct Instrument *instruments) {
-    FILE * file = fopen("/home/kate/Programming-Belchynska/lab15/Instruments.txt", "r");
+struct Instrument* readFromFile(struct Instrument** i) {
+    FILE * file = fopen("/home/kate/Programming-Belchynska/lab15/instruments.txt", "r");
     if (file == NULL) {
         printf("can't open because: %s", strerror(errno));
         exit(1);
     }
-    scanf("%s", "%s", "%d", instruments->type, instruments->firm, instruments->year);
+    for (int j = 0; j < 6; ++j) {
+        struct Instrument* item = *(i + j);
+        fscanf(file, "%s %s %d", item->type, item->firm, &(item->year));
+    }
+
 
     fclose(file);
 }
 
 
 
-//void print_circle(struct Type* p, char dx, char dy) {
-
-
-
-/*void printInstrument(struct Instrument *instrument, int year) {
+struct Instrument* printInstrument(struct Instrument** instrument) {
     printf("Instrument info: \n");
-    printf("\tType: %s\n", (*instrument).type);
-    printf("\tPosition: %s\n", (*instrument).firm);
+    for (int j = 0; j < 6; j++) {
+        struct Instrument* item = *(instrument + j);
+        printf("\tType: %s\n", item->type);
+        printf("\tPosition: %s\n", item->firm);
 
-    printf("\tProduction Year: %d\n", (*instrument).year);
+        printf("\tProduction Year: %d\n", item->year);
+    }
+
 }
-*/
 
-void sortByYear(struct Instrument *instruments) {
-    for (int i = 0; i < INSTRUMENT_COUNT ; i++) {
-        for (int j = 0; j < INSTRUMENT_COUNT -1; j++) {
-            if ((instruments + i)->year < (instruments + j + 1)->year) {
-                struct Employee *temp = (instruments + j);
-                strcpy((instruments + j), (instruments + j + 1));
-                strcpy((instruments + j + 1), temp);
+
+struct Instrument* sortByYear(struct Instrument** instruments) {
+//    for (int j = 0; j < 6; j++) {
+//        struct Instrument *item = *(instruments + j);
+//    }
+    for (int i = 0; i < INSTRUMENT_COUNT; i++) {
+        struct Instrument* item = *(instruments + i);
+        for (int j = 0; j < INSTRUMENT_COUNT - i - 1; j++) {
+            if (item ->year < (item + 1)->year) {
+                struct Instrument** temp = (item + j);
+                (item + j) = (item + j + 1);
+                (item + j) = (temp + j);
+
             }
         }
+        writeInFile(instruments);
     }
 }
-//    for (int i = 0; i < INSTRUMENT_COUNT; i++) {
-        //printEmployee(&employees[i]);
-//    }
+
+struct Instrument* writeInFile(struct Instrument** instrument) {
+    FILE * file = fopen("/home/kate/Programming-Belchynska/lab15/instrumentsOut.txt", "w");
+    for (int j = 0; j < 6; j++) {
+        struct Instrument* item = *(instrument + j);
+        fprintf(file,"\tType: %s\n", item->type);
+        fprintf(file, "\tPosition: %s\n", item->firm);
+
+        fprintf(file,"\tProduction Year: %d\n", item->year);
+    }
+    fclose(file);
+}
+/*void writeToBinaryFile(struct Instrument** instrument){
+    FILE * file = fopen("/home/kate/Programming-Belchynska/lab15/instruments.bin", "w");
+    for (int j = 0; j < 6; j++) {
+        struct Instrument *item = *(instrument + j);
+        fwrite(item->type, sizeof(struct Instrument), sizeof(*item->type), file);
+        fwrite(item->firm, sizeof(struct Instrument), sizeof(*item->type), file);
+        char temp[50];
+        sscanf("%d", temp, item->year);
+        fwrite(temp, sizeof(struct Instrument), sizeof(*item->type), file);
+    }
+    fclose(file);
+}
+*/

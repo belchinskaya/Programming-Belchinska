@@ -1,24 +1,25 @@
 #pragma one
 #include <stdio.h>
-#include <stdio.h>
 #include <time.h>
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
-#define INSTRUMENT_COUNT
+#define INSTRUMENT_COUNT 6
 
-void readFromFile(struct Instrument *instruments);
-//void writeToConsole(char * pFirms, long count);
-long fileSize(FILE * file);
+struct Instrument* readFromFile(struct Instrument** i);
+
+//long fileSize(FILE * file);
 
 struct Instrument {
-    const char* type;
-    const char* firm;
+    char type[15];
+    char firm[15];
     int year;
 };
 
 
-void getFromFile(char* type, char* firm, int year);
 
-void printInstrument(struct Instrument violin);
-void sortByYear(struct Instrument violin);
+
+struct Instrument* printInstrument(struct Instrument** instrument);
+struct Instrument* sortByYear(struct Instrument** i);
+struct Instrument* writeInFile(struct Instrument** instrument);
+void writeToBinaryFile(struct Instrument** instrument);
