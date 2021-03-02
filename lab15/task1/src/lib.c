@@ -1,13 +1,12 @@
+/**
+ * @file lib.c
+ * @brief Файл з реалізацією функцій
+ *
+ * @author Belchynska K.
+ * @date 02-march-2021
+ * @version 1.0
+ */
 #include "lib.h"
-/*long fileSize(FILE * file) {
-
-    file = fopen("/home/kate/Programming-Belchynska/lab15/instruments.txt", "r");
-    fseek(file, 0, SEEK_END);
-    long count = ftell(file);
-    printf("Filesize: %ld \n", count);
-    fclose(file);
-    return count;
-}*/
 
 
 
@@ -28,7 +27,7 @@ struct Instrument* readFromFile(struct Instrument** i) {
 
 
 
-struct Instrument* printInstrument(struct Instrument** instrument) {
+/*truct Instrument* printInstrument(struct Instrument** instrument) {
     printf("Instrument info: \n");
     for (int j = 0; j < 6; j++) {
         struct Instrument* item = *(instrument + j);
@@ -39,24 +38,25 @@ struct Instrument* printInstrument(struct Instrument** instrument) {
     }
 
 }
-
+*/
 
 struct Instrument* sortByYear(struct Instrument** instruments) {
 //    for (int j = 0; j < 6; j++) {
 //        struct Instrument *item = *(instruments + j);
 //    }
     for (int i = 0; i < INSTRUMENT_COUNT; i++) {
-        struct Instrument* item = *(instruments + i);
-        for (int j = 0; j < INSTRUMENT_COUNT - i - 1; j++) {
-            if (item ->year < (item + 1)->year) {
-                struct Instrument** temp = (item + j);
-                (item + j) = (item + j + 1);
-                (item + j) = (temp + j);
+        //struct Instrument* item = *(instruments + i);
+        for (int j = 0; j < INSTRUMENT_COUNT  - 1; j++) {
+            if ((*(instruments + j))->year > (*(instruments + j  + 1))->year) {
+                struct Instrument* temp = *(instruments + j);
+                *(instruments + j) = *(instruments + j + 1);
+                *(instruments + j + 1) = temp;
 
             }
         }
-        writeInFile(instruments);
+
     }
+
 }
 
 struct Instrument* writeInFile(struct Instrument** instrument) {
@@ -70,7 +70,7 @@ struct Instrument* writeInFile(struct Instrument** instrument) {
     }
     fclose(file);
 }
-/*void writeToBinaryFile(struct Instrument** instrument){
+void writeToBinaryFile(struct Instrument** instrument){
     FILE * file = fopen("/home/kate/Programming-Belchynska/lab15/instruments.bin", "w");
     for (int j = 0; j < 6; j++) {
         struct Instrument *item = *(instrument + j);
@@ -82,4 +82,24 @@ struct Instrument* writeInFile(struct Instrument** instrument) {
     }
     fclose(file);
 }
-*/
+
+struct Instrument* printTheOldestInstrument(struct Instrument** instrument) {
+    char* seekInstrument = malloc(10 * sizeof(char ));
+    seekInstrument = "Yamaha";
+
+
+    for (int i = 0; i < INSTRUMENT_COUNT; i++) {
+
+        struct Instrument *item = *(instrument + i);
+        for (int j = 0; j < 11; j++) {
+            if ((strcmp(item ->firm, seekInstrument)) == 0){
+                printf("\tThe oldest violin firm Yamaha\n\tType: %s\n", item->type);
+                printf("\tPosition: %s\n", item->firm);
+
+                printf("\tProduction Year: %d\n", item->year);
+                break;
+            }
+        }
+    }
+    free(seekInstrument);
+}
