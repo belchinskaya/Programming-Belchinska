@@ -59,6 +59,6 @@ struct Instrument* writeInFile(struct Instrument** instrument);
 /**
  * Функція записує у бінарний файл  відсортовані елементи
  * @param instrument
- * @return 
+* @return
  */
 void writeToBinaryFile(struct Instrument** instrument);
