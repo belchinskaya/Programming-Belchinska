@@ -2,3 +2,4 @@ dist/
 src/.idea/
 src/cmake-build-debug/
 CMakeLists.txt
+.idea/
