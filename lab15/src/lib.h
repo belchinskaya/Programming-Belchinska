@@ -42,7 +42,7 @@ struct Instrument* printInstrument(struct Instrument** instrument, struct Bow* b
  * @param i приймає вказівник на вказівники структури інструментів
  * @return вказівник на структуру елементів
  */
-struct Instrument* readFromFile(struct Instrument **i, struct Bow **bow);
+struct Instrument* readFromFile(struct Instrument **i, struct Bow* bow);
 /**
  * Функція сортує інструменти за роком виготовлення
  * @param instruments
@@ -57,18 +57,20 @@ struct Instrument* sortByYear(struct Instrument** instruments);
  * @param instrument
  * @return вказівник на структури інструментів
  */
-struct Instrument* printTheOldestInstrument(struct Instrument** instrument, struct Bow** bow);
+struct Instrument* printTheOldestInstrument(struct Instrument** instrument, struct Bow* bow);
 
 /**
  * Функція записує у файл  відсортовані елементи
  * @param instrument
  * @return вказівник на структури інструментів
  */
-struct Instrument *writeInFile(struct Instrument **instrument, struct Bow **bow);
+struct Instrument *writeInFile(struct Instrument **instrument, struct Bow* bow);
 
 /**
  * Функція записує у бінарний файл  відсортовані елементи
  * @param instrument
 * @return
  */
-void writeToBinaryFile(struct Instrument** instrument);
+void writeToBinaryFile(struct Instrument** instrument, struct Bow* bow);
+
+void readFromBinary(struct Instrument** instrument, struct Bow* bow);

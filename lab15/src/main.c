@@ -41,23 +41,24 @@ int main() {
     for (int i = 0; i < 200; i++) {
         *(instruments + i) = malloc(sizeof(struct Instrument));
     }
-    struct Bow ** bows = malloc(6 * sizeof(struct Bow ));
-    for (int i = 0; i < 200; i++) {
-        *(bows + i) = malloc(sizeof(struct Bow));
-    }
+//    struct Bow ** bows = malloc(6 * sizeof(struct Bow ));
+//    for (int i = 0; i < 200; i++) {
+//        *(bows + i) = malloc(sizeof(struct Bow));
+//    }
+    struct Bow* bow1 = malloc(sizeof(struct Bow));
 
-
-    readFromFile(instruments, bows);
+    readFromFile(instruments, bow1);
     sortByYear(instruments);
     //printInstrument(instruments, bows);
-    printTheOldestInstrument(instruments, bows);
-    writeInFile(instruments, bows);
-    writeToBinaryFile(instruments);
+    printTheOldestInstrument(instruments, bow1);
+    writeInFile(instruments, bow1);
+    writeToBinaryFile(instruments, bow1);
+    readFromBinary( instruments, bow1);
 
 
 
     free(instruments);
-    free(bows);
+    free(bow1);
 
     return 0;
 }

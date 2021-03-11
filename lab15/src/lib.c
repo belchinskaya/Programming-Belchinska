@@ -7,9 +7,9 @@
  * @version 1.0
  */
 #include "lib.h"
+#define N 6
 
-
-struct Instrument* readFromFile(struct Instrument **i, struct Bow **bow) {
+struct Instrument* readFromFile(struct Instrument **i, struct Bow* bow) {
     FILE *file = fopen("/home/kate/Programming-Belchynska/lab15/instruments.txt", "r");
     if (file == NULL) {
         printf("can't open because: %s", strerror(errno));
@@ -18,8 +18,8 @@ struct Instrument* readFromFile(struct Instrument **i, struct Bow **bow) {
     for (int j = 0; j < INSTRUMENT_COUNT; j++) {
         struct Instrument *item = *(i + j);
         fscanf(file, "%s %s %d %f", item->type, item->firm, &(item->year), &(item->size));
-        fscanf(file, "%d", &(*(bow + j))->weight);
-        fscanf(file, "%d", &(*(bow + j))->material);
+        fscanf(file, "%d", &bow->weight);
+        fscanf(file, "%d", &bow->material);
     }
 
     fclose(file);
@@ -61,7 +61,7 @@ struct Instrument *sortByYear(struct Instrument **instruments) {
 
 }
 
-struct Instrument *writeInFile(struct Instrument **instrument, struct Bow** bow) {
+struct Instrument *writeInFile(struct Instrument **instrument, struct Bow* bow) {
     FILE *file = fopen("/home/kate/Programming-Belchynska/lab15/instrumentsOut.txt", "w");
     for (int j = 0; j < 6; j++) {
         struct Instrument *item = *(instrument + j);
@@ -69,8 +69,8 @@ struct Instrument *writeInFile(struct Instrument **instrument, struct Bow** bow)
         fprintf(file, "\tFirm: %s\n", item->firm);
         fprintf(file, "\tProduction Year: %d\n", item->year);
         fprintf(file, "\tSize: %f\n", item->size);
-        fprintf(file, "\tBow weight: %d\n", (*(bow + j))->weight);
-        switch ((*(bow + j))->material) {
+        fprintf(file, "\tBow weight: %d\n", bow->weight);
+        switch (bow->material) {
             case BT: fprintf(file,"\tBow material: Brazilian Tree\n\n");
                 break;
             case PERNAMBUCO: fprintf(file,"\tBow material: Pernambuco\n\n");
@@ -84,7 +84,7 @@ struct Instrument *writeInFile(struct Instrument **instrument, struct Bow** bow)
     fclose(file);
 }
 
-void writeToBinaryFile(struct Instrument **instrument) {
+void writeToBinaryFile(struct Instrument **instrument, struct Bow* bow) {
     FILE *file = fopen("/home/kate/Programming-Belchynska/lab15/instruments.bin", "w");
     for (int j = 0; j < 6; j++) {
         struct Instrument *item = *(instrument + j);
@@ -93,11 +93,17 @@ void writeToBinaryFile(struct Instrument **instrument) {
         char temp[50];
         sscanf("%d", temp, item->year);
         fwrite(temp, sizeof(struct Instrument), sizeof(*item->type), file);
+        sscanf("%f", temp, item->size);
+        fwrite(temp, sizeof(struct Instrument), sizeof(item->size), file);
+        sscanf("%d", temp, bow->weight);
+        fwrite(temp, sizeof(struct Instrument), sizeof(bow->weight), file);
+        sscanf("%d", temp, bow->material);
+        fwrite(temp, sizeof(struct Instrument), sizeof(bow->material), file);
     }
     fclose(file);
 }
 
-struct Instrument *printTheOldestInstrument(struct Instrument **instrument, struct Bow** bow) {
+struct Instrument *printTheOldestInstrument(struct Instrument **instrument, struct Bow* bow) {
     char seekInstrument[10] = "Yamaha";
 
 
@@ -111,8 +117,8 @@ struct Instrument *printTheOldestInstrument(struct Instrument **instrument, stru
                 printf( "\tFirm: %s\n", item->firm);
                 printf( "\tProduction Year: %d\n", item->year);
                 printf("\tSize: %f\n", item->size);
-                printf("\tBow weight: %d\n", (*(bow + j))->weight);
-                switch ((*(bow + j))->material) {
+                printf("\tBow weight: %d\n", bow->weight);
+                switch (bow->material) {
                     case BT: printf("\tBow material: Brazilian Tree\n\n");
                         break;
                     case PERNAMBUCO: printf("\tBow material: Pernambuco\n\n");
@@ -127,3 +133,50 @@ struct Instrument *printTheOldestInstrument(struct Instrument **instrument, stru
 
 }
 
+void readFromBinary(struct Instrument** instrument, struct Bow* bow) {
+    FILE *file = fopen("/home/kate/Programming-Belchynska/lab15/instruments.bin", "r");
+    fseek(file, 0, SEEK_END);
+    long count = ftell(file);
+
+    //int pos = count / sizeof(struct Instrument** instrument);
+
+    for (int j = 4; j < 6; j++) {
+        struct Instrument *item = *(instrument + j);
+        fread(item->type, sizeof(struct Instrument), sizeof(*item->type), file);
+        fread(item->firm, sizeof(struct Instrument), sizeof(*item->type), file);
+        char temp[50];
+        sscanf("%d", temp, item->year);
+        fread(temp, sizeof(struct Instrument), sizeof(*item->type), file);
+        sscanf("%f", temp, item->size);
+        fread(temp, sizeof(struct Instrument), sizeof(item->size), file);
+        sscanf("%d", temp, bow->weight);
+        fread(temp, sizeof(struct Instrument), sizeof(bow->weight), file);
+        sscanf("%d", temp, bow->material);
+        fread(temp, sizeof(struct Instrument), sizeof(bow->material), file);
+
+        printf("\tWrite fifth element from binary:\n");
+        printf("\tType: %s\n", item->type);
+        printf("\tPosition: %s\n", item->firm);
+        printf("\tProduction Year: %d\n", item->year);
+        printf("\tSize: %f\n", item->size);
+        printf("\tBow weight: %d\n", bow->weight);
+        switch (bow->material) {
+            case BT: printf("\tBow material: Brazilian Tree\n\n");
+                break;
+            case PERNAMBUCO: printf("\tBow material: Pernambuco\n\n");
+                break;
+            case FIBERGLASS: printf("\tBow material: Fiberglass\n\n");
+                break;
+        }
+        break;
+    }
+    //fseek(file, 0, (pos - 1) * sizeof(struct Instrument*));
+    for (int j = 0; j < 6; j++) {
+        struct Instrument *item = *(instrument + j);
+        //if (j == pos - 1) {
+
+        //}
+
+    }
+    fclose(file);
+}
