@@ -4,7 +4,8 @@ int main() {
 
 
 
-
+    insert("abracadabra", "TEXT2", 4);
+    delete_array("abracadabra", 4, 8);
 
 //FILE * file = fopen("/home/kate/Programming-Belchynska/lab15/InstrumentsOut.txt", "r");
     struct Instrument ** instruments = malloc(INSTRUMENT_COUNT * sizeof(struct Instrument* ));
@@ -18,16 +19,16 @@ int main() {
     enum Material* material = malloc(sizeof(enum Material));
     struct Bow* bow1 = malloc(sizeof(struct Bow));
 
-    readFromFile(instruments, material);
+    readFromFile(instruments, bow1, material);
     sortByYear(instruments);
     //deleteStructElement(instruments, bow1, material);
     //printInstrument(instruments, bows);
-    printTheOldestInstrument(instruments, material);
+    printTheOldestInstrument(instruments, bow1, material);
 
-    writeInFile(instruments, material);
-    writeToBinaryFile(instruments, material);
-    readFromBinary( instruments, material);
-
+    writeInFile(instruments, bow1, material);
+    writeToBinaryFile(instruments, bow1, material);
+    readFromBinary( instruments, bow1, material);
+    copyStructElement(instruments, bow1, material);
 
 
     free(material);

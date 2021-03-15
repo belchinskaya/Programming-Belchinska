@@ -24,13 +24,21 @@
 
 
 
-
+char * insert(char * arr1, char * arrCenter, size_t position);
+char * delete_array(char * arr, size_t start, size_t end);
 
 //long fileSize(FILE * file);
 /**
  * Структура інструментів, включає до себе тип інструменту, фірму та рік виготовленя
  */
+struct Instrument {
+    char type[15];
+    char firm[15];
+    int year;
+    float size;
+    struct Bow** bow;
 
+};
 enum Material {BT = 1, PERNAMBUCO = 2, FIBERGLASS = 3};
 //static char material[3][20] = {"Brazilian Tree", "Pernambuco", "Fiberglass"};
 
@@ -39,23 +47,14 @@ struct Bow {
     enum Material material;
 };
 
-struct Instrument {
-    char type[15];
-    char firm[15];
-    int year;
-    float size;
-    struct Bow bow;
 
-};
-
-
-struct Instrument* printInstrument(struct Instrument** instrument);
+struct Instrument* printInstrument(struct Instrument** instrument, struct Bow* bow);
 /**
  *  Функція читає вхідні дані з файлу
  * @param i приймає вказівник на вказівники структури інструментів
  * @return вказівник на структуру елементів
  */
-struct Instrument* readFromFile(struct Instrument **i, enum Material* material);
+struct Instrument* readFromFile(struct Instrument **i, struct Bow* bow, enum Material* material);
 /**
  * Функція сортує інструменти за роком виготовлення
  * @param instruments
@@ -70,26 +69,28 @@ struct Instrument* sortByYear(struct Instrument** instruments);
  * @param instrument
  * @return вказівник на структури інструментів
  */
-struct Instrument* printTheOldestInstrument(struct Instrument** instrument, enum Material* material);
+struct Instrument* printTheOldestInstrument(struct Instrument** instrument, struct Bow* bow, enum Material* material);
 
 /**
  * Функція записує у файл  відсортовані елементи
  * @param instrument
  * @return вказівник на структури інструментів
  */
-struct Instrument *writeInFile(struct Instrument **instrument, enum Material* material);
+struct Instrument *writeInFile(struct Instrument **instrument, struct Bow* bow, enum Material* material);
 
 /**
  * Функція записує у бінарний файл  відсортовані елементи
  * @param instrument
 * @return
  */
-void writeToBinaryFile(struct Instrument** instrument, enum Material* material);
+void writeToBinaryFile(struct Instrument** instrument, struct Bow* bow, enum Material* material);
 
-void readFromBinary(struct Instrument** instrument, enum Material* material);
+void readFromBinary(struct Instrument** instrument, struct Bow* bow, enum Material* material);
 
 struct Container{
     struct Instrument** array;
     int size;
 };
 
+void copyStructElement(struct Instrument** pInstrument, struct Bow* bow, enum Material* material);
+void deleteStructElement(struct Instrument** pInstrument, struct Bow* bow, enum Material* material, FILE* file);
