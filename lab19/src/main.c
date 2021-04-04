@@ -1,8 +1,12 @@
-#include "lib.h"
+//#include "data.h"
+#include "list.h"
 
 int main() {
 
-
+    struct Container container = {NULL, 0};
+    container.head = malloc(sizeof(struct ElementCapsule));
+    container.head->next = NULL;
+    container.size = 0;
 
     insert("abracadabra", "TEXT2", 4);
     delete_array("abracadabra", 4, 8);
@@ -30,7 +34,9 @@ int main() {
     readFromBinary( instruments, bow1, material);
     copyStructElement(instruments, bow1, material);
 
-
+    getInstrumentList(&container);
+    dialog(&container, instruments);
+    cleanUp(&container);
     free(material);
     free(instruments);
     free(bow1);

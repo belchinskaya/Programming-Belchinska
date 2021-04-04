@@ -31,14 +31,7 @@ char * delete_array(char * arr, size_t start, size_t end);
 /**
  * Структура інструментів, включає до себе тип інструменту, фірму та рік виготовленя
  */
-struct Instrument {
-    char type[15];
-    char firm[15];
-    int year;
-    float size;
-    struct Bow** bow;
 
-};
 enum Material {BT = 1, PERNAMBUCO = 2, FIBERGLASS = 3};
 //static char material[3][20] = {"Brazilian Tree", "Pernambuco", "Fiberglass"};
 
@@ -46,6 +39,15 @@ struct Bow {
     int weight;
     enum Material material;
 };
+struct Instrument {
+    char type[15];
+    char firm[15];
+    int year;
+    float size;
+    struct Bow bow;
+
+};
+
 
 
 struct Instrument* printInstrument(struct Instrument** instrument, struct Bow* bow);
@@ -87,10 +89,10 @@ void writeToBinaryFile(struct Instrument** instrument, struct Bow* bow, enum Mat
 
 void readFromBinary(struct Instrument** instrument, struct Bow* bow, enum Material* material);
 
-struct Container{
-    struct Instrument** array;
-    int size;
-};
+//struct Container{
+ //   struct Instrument** array;
+ //   int size;
+//};
 
 void copyStructElement(struct Instrument** pInstrument, struct Bow* bow, enum Material* material);
 void deleteStructElement(struct Instrument** pInstrument, struct Bow* bow, enum Material* material, FILE* file);

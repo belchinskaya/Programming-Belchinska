@@ -1,4 +1,4 @@
-#include "lib.h"
+#include "data.h"
 /**
  * @file lib.c
  * @brief Файл з реалізацією функцій
