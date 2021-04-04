@@ -1,40 +1,42 @@
-	Type: Acouthtic
-	Firm: Stenor
-	Production Year: 1800
-	Size: 0.250000
-	Bow weight: 1000
+	Acouthtic
+	Stenor
+	1800
+	0.250000
+	1000
 	Bow material: Brazilian Tree
 
-	Type: Classic
-	Firm: Cecilio
-	Production Year: 1824
-	Size: 0.500000
-	Bow weight: 600
-	Bow material: Fiberglass
-
-	Type: 
-	Firm: 
-	Production Year: 0
-	Size: 0.000000
-	Bow weight: 0
-	Type: Acouthtic
-	Firm: Yamaha
-	Production Year: 1902
-	Size: 1.000000
-	Bow weight: 2100
+	Acouthtic
+	Yamaha
+	1902
+	1.000000
+	2100
 	Bow material: Pernambuco
 
-	Type: Acouthtic
-	Firm: Mendini
-	Production Year: 1976
-	Size: 0.330000
-	Bow weight: 1111
+	Acouthtic
+	Mendini
+	1976
+	0.330000
+	1111
 	Bow material: Fiberglass
 
-	Type: Classic
-	Firm: Fiddlerman
-	Production Year: 1992
-	Size: 1.000000
-	Bow weight: 1000
+	Classic
+	Cecilio
+	1824
+	0.500000
+	600
+	Bow material: Fiberglass
+
+	Classic
+	Fiddlerman
+	1992
+	1.000000
+	1000
 	Bow material: Brazilian Tree
+
+	Acouthtic
+	Cremona
+	1893
+	0.250000
+	1600
+	Bow material: Pernambuco
 
