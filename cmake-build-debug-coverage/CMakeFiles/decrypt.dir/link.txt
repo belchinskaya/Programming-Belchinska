@@ -1,0 +1,1 @@
+/usr/bin/cc --coverage -g   CMakeFiles/decrypt.dir/decrypt/src/main1.c.o  -o decrypt 
