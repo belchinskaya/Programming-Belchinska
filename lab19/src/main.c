@@ -1,44 +1,87 @@
-//#include "data.h"
-#include "list.h"
+/**
+ * @mainpage
+ * # Індивідуальне завдання
+ * @brief Зрозробити функцію, яка реалізує вставку в рядок “s” другий рядок “s2” в “i”-у позицію рядка “s”;
+ * розробити функцію видалення з рядка “s” усіх символів з індексами в заданому діапазоні;
+ * за допомогою функцій memcpy, memset створити функції додання та видалення елементів з динамічного масиву вашої прикладної області;
+ * додати модульні тести, що демонструють коректність розроблених функцій.
+ * реалізувати сортування вмісту списку за одним з критеріїв. При цьому обов’язково забеспечити, щоб обмін місцями об’єктів здійснювався шляхом обміну їх покажчиків.
+ * @author Belchynska K.
+ * @date 17-march-2021
+ * @version 1.0
+ */
 
+#include "list.h"
+/**
+ * @file main.c
+ * @brief Головний файл з викликом функцій,
+ * виділенням пам'яті для динамічних масивів та заданням вхідного тексту.
+ *
+ *
+ * @author Belchynska K.
+ * @date 17-march-2021
+ * @version 1.0
+ */
+
+/**
+ * Головна функція.
+ *
+ * Послідовність дій:
+ * - виклик функції для вставки одного масиву в інший
+ * - виклик функції для видалення ділянки масиву
+ * - виділення пам'яті для структури інструментів
+ * - зчитування інформації з файлу
+ * - виклик функції для сортування інструментів за роком випуску
+ * - виклик функції для виведеня на екран найстаршої скрипки фірми Yamaha
+ * - виклик функції для запису результату у файл
+ * - виклик функції для запису результату у бінарний файл
+ * - виклик функції для видалення елементу з файлу
+ * - виклик функції для копіювання елементу структури у файл
+ * - звільнення пам'яті для структури інструментів
+ *
+ * @return 0 при успішному завершенні програми
+ */
 int main() {
 
-    struct Container container = {NULL, 0};
+    struct Container container = {NULL, 0, NULL};
     container.head = malloc(sizeof(struct ElementCapsule));
-    container.head->next = NULL;
-    container.size = 0;
+    container.head->previous = NULL;
 
-    insert("abracadabra", "TEXT2", 4);
-    delete_array("abracadabra", 4, 8);
+    container.tail = malloc(sizeof(struct ElementCapsule));
+    container.tail->next = NULL;
+    container.head->next = container.tail;
+    container.tail->previous = container.head;
+    container.size = 0;
+    //insert("abracadabra", "TEXT2", 4 );
+    //delete_array("abracadabra", 4, 8);
 
 //FILE * file = fopen("/home/kate/Programming-Belchynska/lab15/InstrumentsOut.txt", "r");
     struct Instrument ** instruments = malloc(INSTRUMENT_COUNT * sizeof(struct Instrument* ));
     for (int i = 0; i < 200; i++) {
         *(instruments + i) = malloc(sizeof(struct Instrument));
     }
-//    struct Bow ** bows = malloc(6 * sizeof(struct Bow ));
-//    for (int i = 0; i < 200; i++) {
-//        *(bows + i) = malloc(sizeof(struct Bow));
-//    }
-    enum Material* material = malloc(sizeof(enum Material));
-    struct Bow* bow1 = malloc(sizeof(struct Bow));
-
-    readFromFile(instruments, bow1, material);
-    sortByYear(instruments);
-    //deleteStructElement(instruments, bow1, material);
-    //printInstrument(instruments, bows);
-    printTheOldestInstrument(instruments, bow1, material);
-
-    writeInFile(instruments, bow1, material);
-    writeToBinaryFile(instruments, bow1, material);
-    readFromBinary( instruments, bow1, material);
-    copyStructElement(instruments, bow1, material);
-
     getInstrumentList(&container);
+    enum Material* material = malloc(sizeof(enum Material));
+
+    readFromFile(instruments);
+    sortByYear(instruments);
+    deleteStructElement(instruments, material);
+    //printInstrument(instruments);
+    printTheOldestInstrument(instruments);
+
+    writeInFile(instruments);
+    writeToBinaryFile(instruments);
+    readFromBinary( instruments);
+    copyStructElement(instruments, material);
+    //
+    //sortByYearList(&container);
+    //struct Instrument item;
+    showList(&container);
     dialog(&container, instruments);
+    showArray(&container);
     cleanUp(&container);
+
     free(material);
     free(instruments);
-    free(bow1);
     return 0;
 }

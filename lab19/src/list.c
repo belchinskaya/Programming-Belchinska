@@ -1,9 +1,10 @@
 #include "list.h"
-//#include "data.h"
+#include "data.h"
 struct ElementCapsule *get_element_by_pos(struct Container* container, size_t pos){
     struct ElementCapsule * walker = container->head;
     for (int i = 0; i < pos; i++){
         walker = walker->next;
+
     }
 
     return walker;
@@ -22,11 +23,11 @@ void insertEl(struct Container * container, size_t pos, struct Instrument * inst
 
      struct ElementCapsule *temp_insert = malloc(sizeof(struct ElementCapsule));
      memcpy(&temp_insert->instrument, instrument, sizeof(struct ElementCapsule));
-     temp_insert->next = walker->next;
-     //temp_insert->previous = walker->previous;
-     walker->next = temp_insert;
-     //walker = walker->previous;
-     container->size++;
+
+    walker->next->previous = temp_insert;
+    temp_insert->next = walker->next;
+    walker->next = temp_insert;
+    container->size++;
 
 }
 struct ElementCapsule* getInstrumentList(struct Container * container) {
@@ -46,7 +47,7 @@ struct ElementCapsule* getInstrumentList(struct Container * container) {
 
     fclose(file);
 }
-    
+
 
 
 struct ElementCapsule* sortByYearList(struct Container *container) {
@@ -84,6 +85,7 @@ struct ElementCapsule* writeInFileList(struct Container *container){
     walker = walker->next;
 
     while (walker != NULL) {
+        int j = 0;
         fprintf(file,"\t%s\n", walker->instrument.type);
         fprintf(file,"\t%s\n", walker->instrument.firm);
         fprintf(file,"\t%d\n", walker->instrument.year);
@@ -110,11 +112,13 @@ void addElement(struct Container *container, size_t pos, struct Instrument ** in
 
     struct ElementCapsule *temp_insert = malloc(sizeof(struct ElementCapsule));
     memcpy(&temp_insert->instrument, *(instrument + 0), sizeof(struct Instrument));
+
+    walker->next->previous = temp_insert;
     temp_insert->next = walker->next;
-    //temp_insert->previous = walker->previous;
     walker->next = temp_insert;
-    //walker = walker->previous;
     container->size++;
+
+
     showArray(container);
 
     //return walker;
@@ -154,6 +158,22 @@ void showArray(struct Container* container){
                 break;
         }
         walker = walker->next;
+
+    }
+}
+
+void showList(struct Container* container){
+    struct ElementCapsule* walker = container->tail;
+    walker = walker->previous;
+    while (walker != NULL) {
+    //if (walker->previous == NULL) {
+    //    walker->previous->instrument = walker->instrument;
+    //}
+        printf("\tType: %s\n", walker->instrument.type);
+        printf("\tFirm: %s\n", walker->instrument.firm);
+        printf("\tYear: %d\n", walker->instrument.year);
+        printf("\tSize: %f\n\n", walker->instrument.size);
+        walker = walker->previous;
 
     }
 }
