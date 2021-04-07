@@ -1,6 +1,6 @@
 targets = main.bin test.bin
 
-CC = gcc
+CC = clang
 C_OPTS = -std=gnu11 -g -Wall -Wextra -Wformat-security -Wfloat-equal -Wshadow -Wconversion -Wlogical-not-parentheses -Wnull-dereference -I./src src/lib.c
 
 
