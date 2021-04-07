@@ -172,7 +172,7 @@ void copyStructElement(struct Instrument** pInstrument, enum Material* material)
         *(doubleInstrument + i) = malloc(sizeof(struct Instrument));
     }
     struct Bow* doubleBow = malloc(sizeof(struct Bow));
-    enum Material * doubleMaterial = malloc(sizeof(enum Material));
+    enum Material* doubleMaterial = malloc(sizeof(enum Material));
 
 
     memcpy(*(doubleInstrument), *(pInstrument), sizeof(struct Instrument));
@@ -195,9 +195,6 @@ void copyStructElement(struct Instrument** pInstrument, enum Material* material)
 
 
     free(doubleBow);
-    for (int i = 0; i < 200; ++i) {
-        free(*(doubleInstrument + i));
-    }
     free(doubleInstrument);
     free(doubleMaterial);
 }

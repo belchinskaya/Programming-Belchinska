@@ -82,10 +82,6 @@ int main() {
     cleanUp(&container);
 
     free(material);
-
-    for (int i = 0; i < 200; ++i) {
-        free(instruments + i);
-    }
     free(instruments);
     return 0;
 }
