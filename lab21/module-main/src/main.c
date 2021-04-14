@@ -1,12 +1,13 @@
 /**
  * @mainpage
  * # Індивідуальне завдання
- * Змінити модульні тести таким чином, щоб:
- *
- * • при запуску кожного тесту виводити ім’я тесту, а по завершенні тесту виводити час, що було витрачено на виконання даного тесту;
- *
- * • по завершенні всіх тестів було виведено час їх виконання.
- * @date 14-april-2021
+ * @brief Зрозробити функцію, яка реалізує вставку в рядок “s” другий рядок “s2” в “i”-у позицію рядка “s”;
+ * розробити функцію видалення з рядка “s” усіх символів з індексами в заданому діапазоні;
+ * за допомогою функцій memcpy, memset створити функції додання та видалення елементів з динамічного масиву вашої прикладної області;
+ * додати модульні тести, що демонструють коректність розроблених функцій.
+ * реалізувати сортування вмісту списку за одним з критеріїв. При цьому обов’язково забеспечити, щоб обмін місцями об’єктів здійснювався шляхом обміну їх покажчиків.
+ * @author Belchynska K.
+ * @date 17-march-2021
  * @version 1.0
  */
 
@@ -49,9 +50,7 @@ long  currentTimeMillis() {
     return time.tv_sec * 1000 + time.tv_usec / 1000;
 }
 int main() {
-#ifdef DEBUG
-    long  start = currentTimeMillis();
-#endif
+
     struct Container container = {NULL, 0, NULL};
     container.head = malloc(sizeof(struct ElementCapsule));
     container.head->previous = NULL;
@@ -86,15 +85,17 @@ int main() {
     //sortByYearList(&container);
     //struct Instrument item;
     //showList(&container);
-
+//#ifdef DEBUG
+    long  start = currentTimeMillis();
+//#endif
     dialog(&container, instruments);
     //showArray(&container);
-    cleanUp(&container);
-#ifdef DEBUG
+
+//#ifdef DEBUG
     long end = currentTimeMillis();
     printf("Total time: %d milliseconds\n", end - start);
-#endif
-
+//#endif
+    cleanUp(&container);
     free(material);
     free(instruments);
     return 0;

@@ -1,5 +1,5 @@
 #include "list.h"
-#include "data.h"
+#include "entity.h"
 struct ElementCapsule *get_element_by_pos(struct Container* container, size_t pos){
     //printf("%s\n", __FUNCTION__ );
     struct ElementCapsule * walker = container->head;
@@ -10,12 +10,7 @@ struct ElementCapsule *get_element_by_pos(struct Container* container, size_t po
 
     return walker;
 }
-//void insertEl(struct Container *container, size_t pos, struct Instrument** instrument){
-//    struct Instrument** new_array = malloc((container->size + 1) * sizeof(struct Instrument*));
-//    for (int i = 0; i < INSTRUMENT_COUNT; i++){
-//        *(new_array + i) = get_element_by_pos();
-//    }
-//}
+
 void insertEl(struct Container * container, size_t pos, struct Instrument * instrument) {
     if (pos > container->size) {
         pos = container->size;
@@ -86,9 +81,7 @@ struct ElementCapsule* sortByYearList(struct Container *container) {
 
 struct ElementCapsule* writeInFileList(struct Container *container){
     FILE * file = fopen("/home/kate/Programming-Belchynska/lab18/instrumentsOutLists.txt", "w");
-#ifdef DEBUG
     printf("%s\n", __FUNCTION__ );
-#endif DEBUG
     struct ElementCapsule* walker = container->head;
     walker = walker->next;
 

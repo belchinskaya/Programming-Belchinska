@@ -1,4 +1,4 @@
-#include "data.h"
+#include "entity.h"
 /**
  * @file lib.c
  * @brief Файл з реалізацією функцій
@@ -196,9 +196,7 @@ void copyStructElement(struct Instrument** pInstrument, enum Material* material)
 
 
     free(doubleBow);
-    //free(*doubleInstrument);
-    free((doubleInstrument));
-
+    free(doubleInstrument);
     free(doubleMaterial);
 }
 
