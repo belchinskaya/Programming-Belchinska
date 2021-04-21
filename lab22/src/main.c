@@ -66,7 +66,7 @@ int main() {
 
     writeToBinaryFile(instruments);
     readFromBinary( instruments);
-
+    printTwoWords(&container);
     dialog(&container, instruments);
 
     cleanUp(&container);

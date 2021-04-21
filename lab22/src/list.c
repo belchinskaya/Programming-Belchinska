@@ -41,18 +41,22 @@ struct ElementCapsule* getInstrumentList(struct Container * container) {
     }
     for (int j = 0; j < INSTRUMENT_COUNT; j++) {
         struct Instrument item;
-        fscanf(file, "%[a-zA-Z] %[а-яА-Я] %d %f", item.type, item.firm, &(item.year), &(item.size));
+        fscanf(file, "%s %s %d %f", item.type, item.firm, &(item.year), &(item.size));
         regex_t regex;
-        int return_value = regcomp(&regex, item.firm,0);
-        return_value = regexec(&regex, "^A-Z[a-zA-Z]", 0, NULL, 0);
-        int return_value2 = regcomp(&regex, item.type,0);
-        return_value2 = regexec(&regex, "^A-Z[a-zA-Z]", 0, NULL, 0);
-        //int return_value3 = regcomp(&regex, item.,0);
+        regcomp(&regex, "[a-zA-Z0-9а-я]",0);
+        int return_value = regexec(&regex, item.type, 0, NULL, 0);
+        regcomp(&regex, "^[A-Z]",0);
+        int return_value2 = regexec(&regex, item.firm, 0, NULL, 0);
+        //regcomp(&regex, "[0-9]",0);
+
         fscanf(file, "%d", &item.bow.weight);
         fscanf(file, "%d", &item.bow.material);
+
         print_result(return_value);
         print_result(return_value2);
-        insertEl(container, j, &item);
+        if (return_value == 0) {
+            insertEl(container, j, &item);
+        }
     }
 
     fclose(file);
@@ -87,6 +91,33 @@ struct ElementCapsule* sortByYearList(struct Container *container) {
     showArray(container);
 
     //return &walker->instrument;
+}
+
+void printTwoWords(struct Container* container){
+    regex_t regex;
+    regcomp(&regex, " ",0);
+    struct ElementCapsule* walker = container->head;
+    walker = walker->next;
+    printf("\nTwo or more words:\n");
+    while (walker->next != NULL){
+        int return_value = regexec(&regex, "Brazilan Tree", 0, NULL, 0);
+        if (return_value == 0){
+            printEl(container);
+            break;
+        }
+        int return_value2 = regexec(&regex, "Pernambuco", 0, NULL, 0);
+        if (return_value2 == 0){
+            printEl(container);
+            break;
+        }
+        int return_value3 = regexec(&regex, "Fiberglass", 0, NULL, 0);
+        if (return_value3 == 0){
+            printEl(container);
+            break;
+        }
+        walker = walker->next;
+    }
+
 }
 
 struct ElementCapsule* writeInFileList(struct Container *container){
@@ -192,27 +223,32 @@ struct ElementCapsule* findByCriterion(struct Container * container){
     walker = walker->next;
     while (walker->next != NULL) {
         if (strcmp(seekInstrument, walker->instrument.firm) == 0) {
-            printf("\tType: %s\n", walker->instrument.type);
-            printf("\tFirm: %s\n", walker->instrument.firm);
-            printf("\tYear: %d\n", walker->instrument.year);
-            printf("\tSize: %f\n", walker->instrument.size);
-            printf("\tBow Weight: %d\n", walker->instrument.bow.weight);
-            switch (walker->instrument.bow.material) {
-                case BT:
-                    printf("\tBow material: Brazilian Tree\n\n");
-                    break;
-                case PERNAMBUCO:
-                    printf("\tBow material: Pernambuco\n\n");
-                    break;
-                case FIBERGLASS:
-                    printf("\tBow material: Fiberglass\n\n");
-                    break;
-            }
+
             break;
         }
         walker = walker->next;
     }
     return walker;
+}
+void printEl(struct Container* container){
+    struct ElementCapsule* walker = container->head;
+    walker = walker->next;
+    printf("\tType: %s\n", walker->instrument.type);
+    printf("\tFirm: %s\n", walker->instrument.firm);
+    printf("\tYear: %d\n", walker->instrument.year);
+    printf("\tSize: %f\n", walker->instrument.size);
+    printf("\tBow Weight: %d\n", walker->instrument.bow.weight);
+    switch (walker->instrument.bow.material) {
+        case BT:
+            printf("\tBow material: Brazilian Tree\n\n");
+            break;
+        case PERNAMBUCO:
+            printf("\tBow material: Pernambuco\n\n");
+            break;
+        case FIBERGLASS:
+            printf("\tBow material: Fiberglass\n\n");
+            break;
+    }
 }
 void dialog(struct Container *container, struct Instrument ** instrument){
     int num = 0;

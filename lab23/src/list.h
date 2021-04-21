@@ -38,12 +38,6 @@ struct ElementCapsule* findByCriterion(struct Container * container);
 
 void cleanUp(struct Container * container);
 
-void printEl(struct Container* container);
-
-void printTwoWords(struct Container* container);
-
 void dialog(struct Container *container, struct Instrument ** instrument);
-
-
 
 
