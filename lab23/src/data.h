@@ -7,13 +7,13 @@
  * @version 1.0
  */
 #pragma once
-#include <stdio.h>
-#include <time.h>
-#include <errno.h>
-#include <string.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <ctime>
+#include <cerrno>
+#include <cstring>
+#include <cstdlib>
 #include <regex.h>
-#define INSTRUMENT_COUNT 6
+
 
 
 
@@ -33,21 +33,65 @@
 enum Material {BT = 1, PERNAMBUCO = 2, FIBERGLASS = 3};
 //static char material[3][20] = {"Brazilian Tree", "Pernambuco", "Fiberglass"};
 
-struct Bow {
+class Bow {
     int weight;
     enum Material material;
+public:
+    Bow(): weight(0), material(){
+
+    }
+    Bow(int w, Material m): weight(w), material(m){
+
+    }
+    Bow(const Bow& copy ): weight(copy.weight), material(copy.material){
+
+    }
+    virtual ~Bow(){
+
+    }
+
+    int getWeight() const{
+        return weight;
+    }
+    Material getMat() const{
+        return material;
+    }
+    void setMat(Material material){
+        Bow::material = material;
+    }
+    void setWeight(int weight) {
+        Bow::weight = weight;
+    }
+
+    void print() const;
 };
 
 /**
  * Структура інструментів, включає до себе тип інструменту, фірму та рік виготовленя
  */
-struct Instrument {
+class Instrument {
     char type[15];
     char firm[15];
     int year;
     float size;
-    struct Bow bow;
+    Bow bow;
+public:
+Instrument(): type(), firm(), year(0), size(0), bow(0, BT){
 
+}
+Instrument(const char t[15], const char f[15], const int year, const float size, const Bow& bow ): year(year), size(size), bow(bow){
+    strcpy(type, t);
+    strcpy(firm, f);
+}
+Instrument(const Instrument& copy): year(copy.year), size(copy.size), bow(copy.bow){
+
+}
+
+    void print() const;
+//add distruct
+    virtual ~Instrument(){
+
+    }
 };
 
 /**
