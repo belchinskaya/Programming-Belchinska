@@ -51,6 +51,9 @@ int main() {
     Instrument instrument3("Classic", "Mendini", 2000, 0.3f, Bow(250, BT));
     list->addInstrument(instrument3);
     list->showInstrument();
+    //instrument = list->getInstrument(1);
+    list->removeInstrument(1);
+    list->showInstrument();
     delete list;
 
     return 0;

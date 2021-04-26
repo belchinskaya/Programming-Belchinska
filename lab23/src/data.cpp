@@ -11,13 +11,13 @@
 
 
  void Bow::print() const{
-     printf("%d\n", this->weight);
+     printf("Bow weight: %d\n\n", this->weight);
 }
 
 void Instrument::print() const{
-    //printf("%15s\n", this->firm);
-    //printf("%15s", this->type);
-    printf("%d", this->year);
-    printf("%f", this->size);
+    printf("Firm: %s\n", this->firm);
+    printf("Type: %s\n", this->type);
+    printf("Production year: %d\n", this->year);
+    printf("Instrument`s size: %f\n", this->size);
     bow.print();
 }

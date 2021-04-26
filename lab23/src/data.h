@@ -84,7 +84,8 @@ Instrument(const char t[15], const char f[15], const int year, const float size,
     strcpy(firm, f);
 }
 Instrument(const Instrument& copy): year(copy.year), size(copy.size), bow(copy.bow){
-
+    strcpy(type, copy.type);
+    strcpy(firm, copy.firm);
 }
 
     void print() const;
