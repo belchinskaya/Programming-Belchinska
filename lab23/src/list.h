@@ -20,7 +20,7 @@ public:List():  count(0){
     void addInstrument(Instrument& instrument);
     void removeInstrument(size_t pos);
     void showInstrument();
-    void findTheOldestInstr(char name[15]);
+    Instrument* findTheOldestInstr(char &name);
 
 //add distruct
     virtual ~List(){

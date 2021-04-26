@@ -21,3 +21,10 @@ void Instrument::print() const{
     printf("Instrument`s size: %f\n", this->size);
     bow.print();
 }
+
+void Instrument:: printTheOldestInstrument(char &name){
+    if (strcmp(this->firm, &name)==0){
+        print();
+    }
+
+}

@@ -39,6 +39,16 @@ void List:: removeInstrument(size_t pos) {
     this->instrument = new_array;
     this->count--;
 }
+Instrument* List::findTheOldestInstr(char &name) {
+    printf("Instrument firm Yamaha\n");
+
+    for (int i = 0; i < this->count; ++i) {
+        getInstrument(i);
+        instrument[i]->printTheOldestInstrument(name);
+        return instrument[i];
+    }
+}
+
 void List:: showInstrument() {
 
     for (int i = 0; i < this->count; ++i) {

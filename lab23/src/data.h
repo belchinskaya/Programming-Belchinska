@@ -89,24 +89,19 @@ Instrument(const Instrument& copy): year(copy.year), size(copy.size), bow(copy.b
 }
 
     void print() const;
+/**
+ *
+ * @param instrument
+ * @return вказівник на структури інструментів
+ */
+    void printTheOldestInstrument(char &name);
 //add distruct
     virtual ~Instrument(){
 
     }
 };
 
-/**
- *
- * @param instrument
- * @return вказівник на структури інструментів
- */
-struct Instrument* printTheOldestInstrument(struct Instrument** instrument);
 
-/**
- * Функція записує у файл  відсортовані елементи
- * @param instrument
- * @return вказівник на структури інструментів
- */
 
 
 /**
