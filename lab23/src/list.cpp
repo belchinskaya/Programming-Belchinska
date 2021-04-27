@@ -38,6 +38,7 @@ void List:: removeInstrument(size_t pos) {
     delete this->instrument;
     this->instrument = new_array;
     this->count--;
+
 }
 Instrument* List::findTheOldestInstr(char &name) {
     printf("Instrument firm Yamaha\n");
