@@ -41,19 +41,28 @@ struct ElementCapsule* getInstrumentList(struct Container * container) {
     }
     for (int j = 0; j < INSTRUMENT_COUNT; j++) {
         struct Instrument item;
-        fscanf(file, "%s %s %d %f", item.type, item.firm, &(item.year), &(item.size));
+        fscanf(file, "%s", item.type);
+        fscanf(file, "%[^\n]s", item.firm);
+        //fgets(item.firm, 30, file);
+        //getline(item.firm, sizeof item.firm, file);
+        fscanf(file, "%d %f", &(item.year), &(item.size));
         regex_t regex;
         regcomp(&regex, "[a-zA-Z0-9а-я]",0);
         int return_value = regexec(&regex, item.type, 0, NULL, 0);
         regcomp(&regex, "^[A-Z]",0);
+
         int return_value2 = regexec(&regex, item.firm, 0, NULL, 0);
         //regcomp(&regex, "[0-9]",0);
-
+        regcomp(&regex, " ",0);
+        int return_value3 = regexec(&regex, item.firm, 0, NULL, 0);
         fscanf(file, "%d", &item.bow.weight);
         fscanf(file, "%d", &item.bow.material);
 
         print_result(return_value);
         print_result(return_value2);
+        printf("\n\tTwo or more words:\n\t");
+        print_result(return_value3);
+        printf("\n");
         if (return_value == 0) {
             insertEl(container, j, &item);
         }
