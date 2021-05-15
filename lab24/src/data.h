@@ -53,7 +53,7 @@ public:
     }
 
     void print() const;
-    void readFromFileBow(std:: string &filename);
+    void readFromFileBow(std::ifstream &f);
     void writeInFileBow(std::string outputFile);
 };
 
@@ -84,7 +84,7 @@ Instrument(const Instrument& copy): year(copy.year), size(copy.size), bow(copy.b
 }
 
     void print() const;
-    void readElementFromFile(std:: string &filename);
+    void readElementFromFile(std::ifstream &f);
     void writeInFileInstr(std::string outputFile);
 
     void printTheOldestInstrument(char &name);

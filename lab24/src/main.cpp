@@ -44,24 +44,24 @@
 int main() {
 
     List * list = new List();
-
+    std::cout << "From file" << std:: endl;
     std::string fileName = "/home/kate/Programming-Belchynska/lab24/instruments.txt";
     list->readFromFile(fileName);
-    std::cout << "From file" << std:: endl;
-    list->showInstrument();
-    list->writeInFile("/home/kate/Programming-Belchynska/lab24/instrumentsOut.txt");
+
+    //list->showInstrument();
+    //list->writeInFile("/home/kate/Programming-Belchynska/lab24/instrumentsOut.txt");
     std::cout << "end" << std::endl;
 
-    Instrument instrument("Classic", "Yamaha", 1805, 0.5f, Bow(300, PERNAMBUCO));
-    list->addInstrument(instrument);
-    Instrument instrument2("Acoustic", "Stenor", 1985, 1.5f, Bow(100, FIBERGLASS));
-    list->addInstrument(instrument2);
-    Instrument instrument3("Classic", "Mendini", 2000, 0.3f, Bow(250, BT));
-    list->addInstrument(instrument3);
-    list->showInstrument();
-
-    instrument = list->getInstrument(1);
-    list->removeInstrument(1);
+//Instrument instrument("Classic", "Yamaha", 1805, 0.5f, Bow(300, PERNAMBUCO));
+//list->addInstrument(instrument);
+//Instrument instrument2("Acoustic", "Stenor", 1985, 1.5f, Bow(100, FIBERGLASS));
+//list->addInstrument(instrument2);
+//Instrument instrument3("Classic", "Mendini", 2000, 0.3f, Bow(250, BT));
+//list->addInstrument(instrument3);
+//list->showInstrument();
+    Instrument instrument;
+    instrument = list->getInstrument(3);
+    list->removeInstrument(3);
     list->showInstrument();
     char name[15] = "Yamaha";
     list->findTheOldestInstr(*name);

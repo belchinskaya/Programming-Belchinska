@@ -22,8 +22,9 @@
 }
 
 void Instrument::print() const{
-    std::cout << "Firm: " << this->firm << std::endl;
     std::cout << "Type: " << this->type << std::endl;
+    std::cout << "Firm: " << this->firm << std::endl;
+
     std::cout << "Production year: " << this->year << std::endl;
     std::cout << "Instrument`s size: " << this->size << std::endl;
     bow.print();
@@ -36,25 +37,24 @@ void Instrument:: printTheOldestInstrument(char &name){
 
 }
 
-void Bow::readFromFileBow(std:: string &filename) {
-    std::ifstream fin;
-    //fin.open(filename);
-    fin >> this->weight;
-
+void Bow::readFromFileBow(std::ifstream &f) {
+     int a;
+    f >> this->weight;
+    f >> a;
+    this->material = (Material) a;
  }
-void Instrument::readElementFromFile(std:: string &filename) {
-    std::ifstream fin;
-    //fin.open(filename);
-    std::getline(fin, this->type);
-    std::getline(fin, this->firm);
-    fin >> this->year >> this->size;
-    bow.readFromFileBow(filename);
-    //fin.close();
+void Instrument::readElementFromFile(std::ifstream &f) {
+    f >> this->type;
+    f >> this->firm;
+    f >> this->year;
+    f >> this->size;
+    bow.readFromFileBow(f);
  }
 
  void Bow::writeInFileBow(std::string outputFile) {
      std::ofstream fout;
      fout << this->weight << std::endl;
+     fout<< this->material <<std::endl;
  }
 
  void Instrument::writeInFileInstr(std::string outputFile) {

@@ -20,7 +20,7 @@ void List:: addInstrument(Instrument& instrument){
     this->count++;
 }
 void List:: removeInstrument(size_t pos) {
-    printf("Delete element from list:\n");
+    std::cout << "Delete element from list:" <<std::endl;
     Instrument** new_array = new Instrument*[this->count - 1];
     List::getInstrument(pos);
     if (this->count == 0) return; // nothing to delete
@@ -34,7 +34,9 @@ void List:: removeInstrument(size_t pos) {
         new_array[i] = this->instrument[i + 1];
     }
 
-    if (pos >= this->count) pos = this->count - 1;
+    if (pos >= this->count) {
+        pos = this->count - 1;
+    }
     delete this->instrument;
     this->instrument = new_array;
     this->count--;
@@ -51,7 +53,7 @@ void List::findTheOldestInstr(char &name) {
 }
 
 void List:: showInstrument() {
-
+    //getInstrument(0);
     for (int i = 0; i < this->count; ++i) {
         instrument[i]->print();
     }
@@ -60,15 +62,14 @@ void List:: showInstrument() {
 void List::readFromFile(std::string fileName) {
     std::ifstream fin;
     fin.open(fileName);
-    //while (!fin.eof()) {
-        for (int i = 0; i < count; ++i) {
-            instrument[i]->readElementFromFile(fileName);
-            addInstrument(*instrument[i]);
-        }
-    //}
-
+    Instrument instrument;
+    while (!fin.eof()) {
+        instrument.readElementFromFile(fin);
+        instrument.print();
+        addInstrument(instrument);
+        std::cout << std::endl << std::endl;
+    }
     fin.close();
-
 }
 
 void List::writeInFile(std::string outputFile) {
