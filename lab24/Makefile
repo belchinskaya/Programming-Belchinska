@@ -1,7 +1,7 @@
 targets = main.bin test.bin
 
-CС = clang++
-C_OPTS = -g -Wall -Wextra -Wformat-security -Wfloat-equal -Wshadow -Wconversion -Wlogical-not-parentheses -Wnull-dereference -I./src src/data.cpp src/list.cpp
+CС = g++
+C_OPTS = -g -Wall -lstdc++ -std=c++11 -Wextra -Wformat-security -Wfloat-equal -Wshadow -Wconversion -Wlogical-not-parentheses -Wnull-dereference -I./src src/data.cpp src/list.cpp
 
 
 all: clean prep compile run
