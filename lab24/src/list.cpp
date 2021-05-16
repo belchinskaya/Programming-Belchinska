@@ -76,7 +76,7 @@ void List::writeInFile(std::string outputFile) {
     std::ofstream fout;
     fout.open(outputFile);
     for (int i = 0; i < count; ++i) {
-        instrument[i]->writeInFileInstr(outputFile);
+        instrument[i]->writeInFileInstr(fout);
     }
     fout.close();
 }

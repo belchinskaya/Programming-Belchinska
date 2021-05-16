@@ -49,7 +49,7 @@ int main() {
     list->readFromFile(fileName);
 
     //list->showInstrument();
-    //list->writeInFile("/home/kate/Programming-Belchynska/lab24/instrumentsOut.txt");
+    list->writeInFile("/home/kate/Programming-Belchynska/lab24/instrumentsOut.txt");
     std::cout << "end" << std::endl;
 
 //Instrument instrument("Classic", "Yamaha", 1805, 0.5f, Bow(300, PERNAMBUCO));
@@ -65,7 +65,10 @@ int main() {
     list->showInstrument();
     char name[15] = "Yamaha";
     list->findTheOldestInstr(*name);
-
+    Instrument i;
+    i.getInstrumentFromString();
+    list->addInstrument(i);
+    list->showInstrument();
     delete list;
 
     return 0;

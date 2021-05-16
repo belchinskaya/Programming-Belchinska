@@ -15,6 +15,7 @@
 #include <regex.h>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 //long fileSize(FILE * file);
 
@@ -54,7 +55,8 @@ public:
 
     void print() const;
     void readFromFileBow(std::ifstream &f);
-    void writeInFileBow(std::string outputFile);
+    void writeInFileBow(std::ofstream &f);
+    void getBowFromString();
 };
 
 /**
@@ -85,9 +87,10 @@ Instrument(const Instrument& copy): year(copy.year), size(copy.size), bow(copy.b
 
     void print() const;
     void readElementFromFile(std::ifstream &f);
-    void writeInFileInstr(std::string outputFile);
+    void writeInFileInstr(std::ofstream &f);
 
     void printTheOldestInstrument(char &name);
+    void getInstrumentFromString();
 //add distruct
     virtual ~Instrument(){
 

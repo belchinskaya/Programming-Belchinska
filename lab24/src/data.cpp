@@ -39,10 +39,11 @@ void Instrument:: printTheOldestInstrument(char &name){
 
 void Bow::readFromFileBow(std::ifstream &f) {
      int a;
-    f >> this->weight;
-    f >> a;
-    this->material = (Material) a;
- }
+     f >> this->weight;
+     f >> a;
+     this->material = (Material) a;
+
+}
 void Instrument::readElementFromFile(std::ifstream &f) {
     f >> this->type;
     f >> this->firm;
@@ -51,12 +52,61 @@ void Instrument::readElementFromFile(std::ifstream &f) {
     bow.readFromFileBow(f);
  }
 
- void Bow::writeInFileBow(std::string outputFile) {
-     std::ofstream fout;
-     fout << this->weight << std::endl;
-     fout<< this->material <<std::endl;
+ void Bow::writeInFileBow(std::ofstream &f) {
+     std::cout << "Bow weight: " << this->weight << std::endl;
+     switch (this->material) {
+         case BT: f << "Bow material: Brazilian Tree" << std::endl << std::endl;
+             break;
+         case PERNAMBUCO: f << "Bow material: Pernambuco" << std::endl << std::endl;
+             break;
+         case FIBERGLASS: f << "Bow material: Fiberglass" << std::endl << std::endl;
+     }
  }
 
- void Instrument::writeInFileInstr(std::string outputFile) {
-     bow.writeInFileBow(outputFile);
+ void Instrument::writeInFileInstr(std::ofstream &f) {
+     f << "Type: " << this->type << std::endl;
+     f << "Firm: " << this->firm << std::endl;
+     f << "Production year: " << this->year << std::endl;
+     f << "Instrument`s size: " << this->size << std::endl;
+     bow.writeInFileBow(f);
+ }
+void  Bow::getBowFromString() {
+    std::stringstream input;
+    input.str("300 2");
+    Bow bow;
+    int a;
+    input >> bow.weight >> a;
+    bow.material = (Material) a;
+ }
+void Instrument::getInstrumentFromString() {
+     std::stringstream input;
+     input.str("Classic Yamaha 1805 0.5f");
+     Instrument instrument;
+     input >> instrument.type >> instrument.firm >> instrument.year >> instrument.size;
+     bow.getBowFromString();
+
+     //print();
+     //std::istringst// ream ss(input);
+     std::string token;
+
+  // std::getline(ss, token, ',');
+  // token = instrument.type;
+  // std::getline(ss, token, ',');
+  // token = instrument.firm;
+  // std::cout << instrument.firm;
+
+  //hile(std::getline(ss, token, ',')) {
+  //   int i = 0;
+  //   std::cout << token << '\n';
+  //   switch (i) {
+  //       case 0: instrument.type = token;
+  //           break;;
+  //       case 1: instrument.firm = token;
+  //           break;
+  //      // case 3: instrument.year = token;
+
+  //   }
+
+
+
  }
