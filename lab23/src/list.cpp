@@ -1,6 +1,15 @@
 #include "list.h"
 #include "data.h"
-#define INSTRUMENT_COUNT 6
+
+/**
+ * @file list.cpp
+ * @brief Файл з реалізацією функцій для списку інструментів
+ *
+ * @author Belchynska K.
+ * @date 08-may-2021
+ * @version 1.0
+ */
+
 
 Instrument& List:: getInstrument(size_t index){
     return *instrument[index];
@@ -34,7 +43,9 @@ void List:: removeInstrument(size_t pos) {
         new_array[i] = this->instrument[i + 1];
     }
 
-    if (pos >= this->count) pos = this->count - 1;
+    if (pos >= this->count) {
+        pos = this->count - 1;
+    }
     delete this->instrument;
     this->instrument = new_array;
     this->count--;
@@ -45,8 +56,8 @@ Instrument* List::findTheOldestInstr(char &name) {
 
     for (int i = 0; i < this->count; ++i) {
         getInstrument(i);
-        instrument[i]->printTheOldestInstrument(name);
-        return instrument[i];
+        instrument[i]->printTheOldestInstrument(&name);
+        //return instrument[i];
     }
 }
 

@@ -1,11 +1,11 @@
 #include "data.h"
-#define INSTRUMENT_COUNT 6
+
 /**
- * @file lib.c
- * @brief Файл з реалізацією функцій
+ * @file data.cpp
+ * @brief Файл з реалізацією функцій класу інструменту
  *
  * @author Belchynska K.
- * @date 02-march-2021
+ * @date 08-may-2021
  * @version 1.0
  */
 
@@ -22,9 +22,25 @@ void Instrument::print() const{
     bow.print();
 }
 
-void Instrument:: printTheOldestInstrument(char &name){
-    if (strcmp(this->firm, &name)==0){
+void Instrument:: printTheOldestInstrument(char* name){
+    if (strcmp(this->firm, name)==0){
         print();
+
     }
 
 }
+
+int Instrument::getYear() const {
+    return this->year;
+}
+
+char * Instrument::getType() {
+    return this->type;
+}
+
+char * Instrument::getFirm() {
+     return this->firm;
+}
+float Instrument::getSize() const {
+     return this->size;
+ }

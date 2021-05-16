@@ -1,9 +1,9 @@
 /**
- * @file lib.h
+ * @file data.h
  * @brief Файл з прототипами функцій
  *
  * @author Belchynska K.
- * @date 17-march-2021
+ * @date 08-may-2021
  * @version 1.0
  */
 #pragma once
@@ -16,23 +16,15 @@
 
 
 
-
-//struct TestElement{
-//    int id;
- //   char data[30];
-//};
-
-
-
-
-
-
-//long fileSize(FILE * file);
-
-
+/**
+ * Перерахування матеріалу смичку інструментів
+ */
 enum Material {BT = 1, PERNAMBUCO = 2, FIBERGLASS = 3};
 //static char material[3][20] = {"Brazilian Tree", "Pernambuco", "Fiberglass"};
 
+/**
+ * клас смичку та його функції
+ */
 class Bow {
     int weight;
     enum Material material;
@@ -89,12 +81,17 @@ Instrument(const Instrument& copy): year(copy.year), size(copy.size), bow(copy.b
 }
 
     void print() const;
+    int getYear() const;
+    char * getType();
+    char * getFirm();
+    float getSize() const;
+
 /**
  *
  * @param instrument
  * @return вказівник на структури інструментів
  */
-    void printTheOldestInstrument(char &name);
+    void printTheOldestInstrument(char* name);
 //add distruct
     virtual ~Instrument(){
 

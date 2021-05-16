@@ -2,6 +2,15 @@
 #include <cstddef>
 #include <strings.h>
 
+/**
+ * @file list.h
+ * @brief Файл з прототипами функцій списку
+ *
+ * @author Belchynska K.
+ * @date 08-may-2021
+ * @version 1.0
+ */
+
 #pragma once
 class List{
     Instrument** instrument;
