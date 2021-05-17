@@ -66,7 +66,8 @@ int main() {
     char name[15] = "Yamaha";
   ///  list->findTheOldestInstr(*name);
     Instrument i;
-    i.getInstrumentFromString();
+    std::string str = "Classic,Yamaha,1805,0.5f";
+    i.getInstrumentFromString(str);
     //list->addInstrument(i);
     //list->showInstrument();
     delete list;

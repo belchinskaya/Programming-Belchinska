@@ -90,8 +90,11 @@ Instrument(const Instrument& copy): year(copy.year), size(copy.size), bow(copy.b
     void writeInFileInstr(std::ofstream &f);
 
     void printTheOldestInstrument(char &name);
-    void getInstrumentFromString();
+    Instrument& getInstrumentFromString(std::string& str);
     std::string& getFirm();
+    int getYear() const;
+    std::string& getType();
+    float getSize() const;
 //add distruct
     virtual ~Instrument(){
 

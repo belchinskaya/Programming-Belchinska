@@ -91,9 +91,9 @@ Bow& Bow::getBowFromString() {
     bow.material = (Material) a;
     return bow;
  }
-void Instrument::getInstrumentFromString() {
+Instrument& Instrument::getInstrumentFromString(std::string& str) {
 
-    std::string  str = "Classic,Yamaha,1805,0.5f";
+   //std::string  str = "Classic,Yamaha,1805,0.5f";
     std::stringstream ss(str);
     Instrument instrument;
     std::string token;
@@ -116,7 +116,20 @@ void Instrument::getInstrumentFromString() {
      instrument.bow = bow.getBowFromString();
 
      instrument.print();
+     return instrument;
  }
 std::string& Instrument::getFirm() {
     return this->firm;
+}
+
+int Instrument::getYear() const {
+    return this->year;
+}
+
+std::string& Instrument::getType() {
+    return this->type;
+}
+
+float Instrument::getSize() const {
+    return this->size;
 }
