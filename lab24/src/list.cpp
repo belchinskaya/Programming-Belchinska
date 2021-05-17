@@ -30,14 +30,14 @@ void List:: removeInstrument(size_t pos) {
     for (int i = 0; i < pos; ++i) {
         new_array[i] = this->instrument[i];
     }
-    for (int i = pos; i < count; ++i) {
+    for (int i = pos; i < count - 1; ++i) {
         new_array[i] = this->instrument[i + 1];
     }
-
+   // delete instrument[]
     if (pos >= this->count) {
         pos = this->count - 1;
     }
-    delete this->instrument;
+    delete[] this->instrument;
     this->instrument = new_array;
     this->count--;
 
@@ -62,12 +62,19 @@ void List:: showInstrument() {
 void List::readFromFile(std::string fileName) {
     std::ifstream fin;
     fin.open(fileName);
-    Instrument instrument;
+
     while (!fin.eof()) {
+        Instrument instrument;
+
+
         instrument.readElementFromFile(fin);
-        instrument.print();
-        addInstrument(instrument);
+
+
         std::cout << std::endl << std::endl;
+        if (instrument.getFirm() != ""){
+            addInstrument(instrument);
+            instrument.print();
+        }
     }
     fin.close();
 }

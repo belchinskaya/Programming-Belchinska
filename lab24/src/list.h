@@ -31,7 +31,7 @@ public:List():  count(0){
         for (int i = 0; i < count; ++i) {
             delete instrument[i];
         }
-        delete instrument;
+        delete[] instrument;
     }
 };
 

@@ -60,15 +60,15 @@ int main() {
 //list->addInstrument(instrument3);
 //list->showInstrument();
     Instrument instrument;
-    instrument = list->getInstrument(3);
+  ///  instrument = list->getInstrument(3);
     list->removeInstrument(3);
     list->showInstrument();
     char name[15] = "Yamaha";
-    list->findTheOldestInstr(*name);
+  ///  list->findTheOldestInstr(*name);
     Instrument i;
     i.getInstrumentFromString();
-    list->addInstrument(i);
-    list->showInstrument();
+    //list->addInstrument(i);
+    //list->showInstrument();
     delete list;
 
     return 0;

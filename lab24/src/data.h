@@ -56,7 +56,7 @@ public:
     void print() const;
     void readFromFileBow(std::ifstream &f);
     void writeInFileBow(std::ofstream &f);
-    void getBowFromString();
+    Bow& getBowFromString();
 };
 
 /**
@@ -91,6 +91,7 @@ Instrument(const Instrument& copy): year(copy.year), size(copy.size), bow(copy.b
 
     void printTheOldestInstrument(char &name);
     void getInstrumentFromString();
+    std::string& getFirm();
 //add distruct
     virtual ~Instrument(){
 

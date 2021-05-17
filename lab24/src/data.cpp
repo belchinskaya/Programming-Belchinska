@@ -53,7 +53,7 @@ void Instrument::readElementFromFile(std::ifstream &f) {
  }
 
  void Bow::writeInFileBow(std::ofstream &f) {
-     std::cout << "Bow weight: " << this->weight << std::endl;
+     f << "Bow weight: " << this->weight << std::endl;
      switch (this->material) {
          case BT: f << "Bow material: Brazilian Tree" << std::endl << std::endl;
              break;
@@ -70,43 +70,53 @@ void Instrument::readElementFromFile(std::ifstream &f) {
      f << "Instrument`s size: " << this->size << std::endl;
      bow.writeInFileBow(f);
  }
-void  Bow::getBowFromString() {
-    std::stringstream input;
-    input.str("300 2");
+Bow& Bow::getBowFromString() {
+
+    std::string str = "300,2";
+    std::stringstream ss(str);
     Bow bow;
+    std::string token;
+    std::stringstream tempSS3;
     int a;
-    input >> bow.weight >> a;
+
+    std::stringstream tempSS;
+    std::getline(ss, token, ',');
+    tempSS << token;
+    tempSS >> bow.weight;
+
+    std::stringstream tempSS4;
+    std::getline(ss, token, ',');
+    tempSS4 << token;
+    tempSS4 >> a;
     bow.material = (Material) a;
+    return bow;
  }
 void Instrument::getInstrumentFromString() {
-     std::stringstream input;
-     input.str("Classic Yamaha 1805 0.5f");
-     Instrument instrument;
-     input >> instrument.type >> instrument.firm >> instrument.year >> instrument.size;
-     bow.getBowFromString();
 
-     //print();
-     //std::istringst// ream ss(input);
-     std::string token;
+    std::string  str = "Classic,Yamaha,1805,0.5f";
+    std::stringstream ss(str);
+    Instrument instrument;
+    std::string token;
+    std::getline(ss, token, ',');
+    instrument.type = token;
+    std::getline(ss, token, ',');
+    instrument.firm = token;
 
-  // std::getline(ss, token, ',');
-  // token = instrument.type;
-  // std::getline(ss, token, ',');
-  // token = instrument.firm;
-  // std::cout << instrument.firm;
+    std::stringstream tempSS;
+    std::getline(ss, token, ',');
+    tempSS << token;
+    tempSS >> instrument.year;
 
-  //hile(std::getline(ss, token, ',')) {
-  //   int i = 0;
-  //   std::cout << token << '\n';
-  //   switch (i) {
-  //       case 0: instrument.type = token;
-  //           break;;
-  //       case 1: instrument.firm = token;
-  //           break;
-  //      // case 3: instrument.year = token;
-
-  //   }
+    std::stringstream tempSS2;
+    std::getline(ss, token, ',');
+    tempSS2 << token;
+    tempSS2 >> instrument.size;
 
 
+     instrument.bow = bow.getBowFromString();
 
+     instrument.print();
  }
+std::string& Instrument::getFirm() {
+    return this->firm;
+}
