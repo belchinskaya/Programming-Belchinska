@@ -3,3 +3,5 @@ src/.idea/
 cmake-build-debug/
 CMakeLists.txt
 .idea/
+instruments.txt
+instrumentsOut.txt
