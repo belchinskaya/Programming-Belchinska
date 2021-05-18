@@ -11,7 +11,17 @@
 
 
  void Bow::print() const{
-     printf("Bow weight: %d\n\n", this->weight);
+     printf("Bow weight: %d\n", this->weight);
+    switch (this->material) {
+        case BT:
+            printf("Bow material: Brazilian Tree\n\n");
+            break;
+        case PERNAMBUCO:
+            printf("Bow material: Pernambuco\n\n");
+            break;
+        case FIBERGLASS:
+            printf("Bow material: Fiberglass\n\n");
+    }
 }
 
 void Instrument::print() const{
@@ -23,11 +33,9 @@ void Instrument::print() const{
 }
 
 void Instrument:: printTheOldestInstrument(char* name){
-    if (strcmp(this->firm, name)==0){
+    if (strcmp(this->firm, name) == 0) {
         print();
-
     }
-
 }
 
 int Instrument::getYear() const {

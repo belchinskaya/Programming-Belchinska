@@ -16,7 +16,6 @@ Instrument& List:: getInstrument(size_t index){
 }
 
 void List:: addInstrument(Instrument& instrument){
-
     Instrument** new_array = new Instrument*[this->count + 1];
 
     for (int i = 0; i < this->count; ++i) {
@@ -39,7 +38,7 @@ void List:: removeInstrument(size_t pos) {
     for (int i = 0; i < pos; ++i) {
         new_array[i] = this->instrument[i];
     }
-    for (int i = pos; i < count; ++i) {
+    for (int i = pos; i < count - 1; ++i) {
         new_array[i] = this->instrument[i + 1];
     }
 
@@ -51,14 +50,19 @@ void List:: removeInstrument(size_t pos) {
     this->count--;
 
 }
-Instrument* List::findTheOldestInstr(char &name) {
+Instrument* List::findTheOldestInstr(char * name) {
+
     printf("Instrument firm Yamaha\n");
 
     for (int i = 0; i < this->count; ++i) {
-        getInstrument(i);
-        instrument[i]->printTheOldestInstrument(&name);
-        //return instrument[i];
+        //getInstrument(i);
+
+        if (strcmp(instrument[i]->getFirm(), name) == 0) {
+            instrument[i]->print();
+            return instrument[i];
+        }
     }
+
 }
 
 void List:: showInstrument() {

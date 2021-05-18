@@ -1,0 +1,42 @@
+Type: Acouthtic
+Firm: Cremona
+Production year: 1893
+Instrument`s size: 0.25
+Bow weight: 1000
+Bow material: Fiberglass
+
+Type: Classic
+Firm: Fiddlerman
+Production year: 1992
+Instrument`s size: 1
+Bow weight: 1400
+Bow material: Pernambuco
+
+Type: Classic
+Firm: Cecilio
+Production year: 1824
+Instrument`s size: 0.5
+Bow weight: 1100
+Bow material: Brazilian Tree
+
+Type: Acouthtic
+Firm: Mendini
+Production year: 1976
+Instrument`s size: 0.33
+Bow weight: 800
+Bow material: Fiberglass
+
+Type: Acouthtic
+Firm: Yamaha
+Production year: 1902
+Instrument`s size: 1
+Bow weight: 1000
+Bow material: Pernambuco
+
+Type: Acouthtic
+Firm: Stenor
+Production year: 1800
+Instrument`s size: 0.25
+Bow weight: 1600
+Bow material: Brazilian Tree
+

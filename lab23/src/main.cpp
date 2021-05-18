@@ -59,7 +59,7 @@ int main() {
     list->removeInstrument(1);
     list->showInstrument();
     char name[15] = "Yamaha";
-    list->findTheOldestInstr(*name);
+    list->findTheOldestInstr(name);
 
     delete list;
 

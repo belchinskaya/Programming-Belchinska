@@ -29,9 +29,9 @@ public:List():  count(0){
     void addInstrument(Instrument& instrument);
     void removeInstrument(size_t pos);
     void showInstrument();
-    Instrument* findTheOldestInstr(char &name);
+    Instrument* findTheOldestInstr(char * name);
 
-//add distruct
+
     virtual ~List(){
         for (int i = 0; i < count; ++i) {
             delete instrument[i];
