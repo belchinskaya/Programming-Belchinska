@@ -14,7 +14,7 @@ void List:: addInstrument(Instrument& instrument){
         new_array[i + 1] = this->instrument[i];
     }
     new_array[0] = new Instrument(instrument);
-
+    //this->instrument[0]("Acoustic", "Stenor", 1985, 1.5f, Bow(300, PERNAMBUCO));
     delete this->instrument;
     this->instrument = new_array;
     this->count++;
@@ -24,9 +24,7 @@ void List:: removeInstrument(size_t pos) {
     Instrument** new_array = new Instrument*[this->count - 1];
     List::getInstrument(pos);
     if (this->count == 0) return; // nothing to delete
-    //for (int i = 0; i < this->count; ++i) {
-    //    new_array[i - 1] = this->instrument[i];
-    //}
+
     for (int i = 0; i < pos; ++i) {
         new_array[i] = this->instrument[i];
     }
@@ -42,7 +40,7 @@ void List:: removeInstrument(size_t pos) {
     this->count--;
 
 }
-void List::findTheOldestInstr(char &name) {
+void List::findTheOldestInstr(std::string& name) {
     printf("Instrument firm Yamaha\n");
 
     for (int i = 0; i < this->count; ++i) {
@@ -55,7 +53,7 @@ void List::findTheOldestInstr(char &name) {
 void List:: showInstrument() {
     //getInstrument(0);
     for (int i = 0; i < this->count; ++i) {
-        instrument[i]->print();
+        std::cout << *instrument[i];
     }
 }
 
@@ -66,14 +64,12 @@ void List::readFromFile(std::string fileName) {
     while (!fin.eof()) {
         Instrument instrument;
 
-
         instrument.readElementFromFile(fin);
-
-
+        //fin >> instrument;
         std::cout << std::endl << std::endl;
         if (instrument.getFirm() != ""){
             addInstrument(instrument);
-            instrument.print();
+            std::cout << instrument;
         }
     }
     fin.close();
@@ -83,7 +79,10 @@ void List::writeInFile(std::string outputFile) {
     std::ofstream fout;
     fout.open(outputFile);
     for (int i = 0; i < count; ++i) {
-        instrument[i]->writeInFileInstr(fout);
+        fout << *instrument[i];
     }
     fout.close();
 }
+
+
+

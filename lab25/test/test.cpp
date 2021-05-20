@@ -11,14 +11,12 @@ bool test_getInstrumentFromString(){
         result = false;
     }
     std::cout << "Expected instrument: " << std::endl;
-    expected.print();
+    std::cout << expected;
 
 
     return result;
 }
 int main() {
-
-
 
     bool result = true;
     result &= test_getInstrumentFromString();

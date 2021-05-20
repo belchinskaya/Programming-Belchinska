@@ -36,16 +36,17 @@ public:
     Bow(const Bow& copy ): weight(copy.weight), material(copy.material){
 
     }
-    virtual ~Bow(){
-
-    }
-
     int getWeight() const{
         return weight;
     }
     Material getMat() const{
         return material;
     }
+    virtual ~Bow(){
+
+    }
+
+
     void setMat(Material material){
         Bow::material = material;
     }
@@ -53,11 +54,12 @@ public:
         Bow::weight = weight;
     }
 
-    void print() const;
+    //void print() const;
+    friend std::istream& operator>> (std::istream &input, Bow& bow);
     void readFromFileBow(std::ifstream &f);
-    void writeInFileBow(std::ofstream &f);
+    //void writeInFileBow(std::ofstream &f);
     Bow& getBowFromString();
-    friend std::ostream& operator << (std::ostream &output, const Bow& bow);
+
 };
 
 /**
@@ -82,48 +84,28 @@ Instrument(const Instrument& copy): year(copy.year), size(copy.size), bow(copy.b
     firm = copy.firm;
 }
 
-    void print() const;
+    //void print() const;
     void readElementFromFile(std::ifstream &f);
-    void writeInFileInstr(std::ofstream &f);
+    void writeInFileInstr(std::ofstream &f) const;
 
-    void printTheOldestInstrument(char &name);
+    void printTheOldestInstrument(std::string& name);
     Instrument& getInstrumentFromString(std::string& str);
     std::string& getFirm();
     int getYear() const;
     std::string& getType();
     float getSize() const;
 
-// Instrument& operator=(const Instrument& other) {
-
-//     if (this == &other) { // 0) проверка на самоприсваивание
-//         return *this;
-//     }
-//     //delete [] numbers;	                     // 1) clear current data​
 
 
-
-//     sizeOfArray = arrInt2.sizeOfArray;
-
-//     numbers = new int[sizeOfArray]; // 2) create new data
-
-//     for (int i = 0; i < sizeOfArray; i++) { // 3) fill data
-
-//         numbers[i] = arrInt2.numbers[i];
-
-//     }
-
-//     return *this;
-// }
-    bool operator == (const Instrument& other) const {
-        return this->firm == other.firm;
+    bool operator == (const std::string& name) const {
+        return this->firm == name;
     }
 
     bool operator != (const Instrument& other) const {
         return !(this->firm == other.firm);
     }
-
+    friend std::istream& operator>> (std::istream &input, Instrument& instrument);
     friend std::ostream& operator<< (std::ostream &output, const Instrument& instrument);
-
 
     virtual ~Instrument(){
 

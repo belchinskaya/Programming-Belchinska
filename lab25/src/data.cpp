@@ -10,58 +10,29 @@
  */
 
 
- void Bow::print() const{
-     std::cout << *this;
-}
 
-void Instrument::print() const{
-
-    std::cout << *this;
-    bow.print();
-}
-
-void Instrument:: printTheOldestInstrument(char &name){
-    if (this->firm == &name){
-        print();
+void Instrument:: printTheOldestInstrument(std::string& name){
+    bool result = true;
+    result  = this->firm == name;
+    if (result){
+        std::cout << *this;
     }
 
 }
 
 void Bow::readFromFileBow(std::ifstream &f) {
-     int a;
-     f >> this->weight;
-     f >> a;
-     this->material = (Material) a;
-
+    f >> *this;
 }
 void Instrument::readElementFromFile(std::ifstream &f) {
-    f >> this->type;
-    f >> this->firm;
-    f >> this->year;
-    f >> this->size;
+    f >> *this;
     bow.readFromFileBow(f);
- }
+}
 
- void Bow::writeInFileBow(std::ofstream &f) {
-     f << "Bow weight: " << this->weight << std::endl;
-     switch (this->material) {
-         case BT: f << "Bow material: Brazilian Tree" << std::endl << std::endl;
-             break;
-         case PERNAMBUCO: f << "Bow material: Pernambuco" << std::endl << std::endl;
-             break;
-         case FIBERGLASS: f << "Bow material: Fiberglass" << std::endl << std::endl;
-     }
- }
+void Instrument::writeInFileInstr(std::ofstream &f) const{
+   f << *this;
+}
 
- void Instrument::writeInFileInstr(std::ofstream &f) {
-     f << "Type: " << this->type << std::endl;
-     f << "Firm: " << this->firm << std::endl;
-     f << "Production year: " << this->year << std::endl;
-     f << "Instrument`s size: " << this->size << std::endl;
-     bow.writeInFileBow(f);
- }
 Bow& Bow::getBowFromString() {
-
     std::string str = "300,2";
     std::stringstream ss(str);
     Bow bow;
@@ -80,10 +51,11 @@ Bow& Bow::getBowFromString() {
     tempSS4 >> a;
     bow.material = (Material) a;
     return bow;
- }
+}
 Instrument& Instrument::getInstrumentFromString(std::string& str) {
 
    //std::string  str = "Classic,Yamaha,1805,0.5f";
+    std::cout << "Instrument from string:" << std::endl;
     std::stringstream ss(str);
     Instrument instrument;
     std::string token;
@@ -105,7 +77,7 @@ Instrument& Instrument::getInstrumentFromString(std::string& str) {
 
      instrument.bow = bow.getBowFromString();
 
-     instrument.print();
+     std::cout << instrument;
      return instrument;
  }
 std::string& Instrument::getFirm() {
@@ -126,18 +98,13 @@ float Instrument::getSize() const {
 
 std::ostream& operator<< (std::ostream &output, const Instrument& instrument) {
 
-    //output << "Year\n" << instrument.firm;
     output << "Type: " << instrument.type << std::endl;
     output << "Firm: " << instrument.firm << std::endl;
     output << "Production year: " << instrument.year << std::endl;
     output << "Instrument`s size: " << instrument.size << std::endl;
 
-    return output;
-}
-
-std::ostream& operator << (std::ostream &output, const Bow& bow) {
-    output << "Bow weight: " << bow.weight << std::endl;
-    switch (bow.material) {
+    output << "Bow weight: " << instrument.bow.getWeight() << std::endl;
+    switch (instrument.bow.getMat()) {
         case BT: output << "Bow material: Brazilian Tree" << std::endl << std::endl;
             break;
         case PERNAMBUCO: output << "Bow material: Pernambuco" << std::endl << std::endl;
@@ -145,4 +112,23 @@ std::ostream& operator << (std::ostream &output, const Bow& bow) {
         case FIBERGLASS: output << "Bow material: Fiberglass" << std::endl << std::endl;
     }
     return output;
- }
+}
+
+std::istream& operator>> (std::istream &input, Bow& bow){
+    int a;
+    input >> bow.weight;
+    input >> a;
+    bow.material = (Material) a;
+    return input;
+}
+
+std::istream& operator>> (std::istream &input, Instrument& instrument){
+    input >> instrument.type;
+    input >> instrument.firm;
+    input >> instrument.year;
+    input >> instrument.size;
+    //bow.readFromFileBow(f);
+
+
+    return input;
+}
