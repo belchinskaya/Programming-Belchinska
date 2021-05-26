@@ -76,6 +76,55 @@ public:
 
 };
 
+class ViolinList {
+    Violin **violins;
+    int num;
+public:
+    ViolinList() : num(0) {
 
+    }
 
+    ViolinList(const ViolinList &copy) : num(copy.num) {
+        violins = new Violin *[num];
+        for (int i = 0; i < num; ++i) {
+            violins[i] = new Violin(*copy.violins[i]);
+        }
 
+    }
+
+    void addViolin(Violin &violin);
+
+    void removeViolin(size_t pos);
+
+    void showViolin();
+    virtual ~ViolinList() {
+        for (int i = 0; i < num; ++i) {
+            delete violins[i];
+        }
+        delete[] violins;
+    }
+
+};
+
+class ContrabassList {
+
+    Contrabass **contrabasses;
+    int size;
+public:
+    ContrabassList() : size(0) {
+
+    }
+
+    ContrabassList(const ContrabassList &copy) : size(copy.size) {
+        contrabasses = new Contrabass *[size];
+        for (int i = 0; i < size; ++i) {
+            contrabasses[i] = new Contrabass(*copy.contrabasses[i]);
+        }
+
+    }
+    void addContrabass(Contrabass &contrabass);
+
+    void removeContrabass(size_t pos);
+
+    void showContrabass();
+};

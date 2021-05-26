@@ -11,13 +11,12 @@
 
 
 
-void Instrument:: printTheOldestInstrument(std::string& name){
+void Instrument:: printTheOldestInstrument(std::string& name) {
     bool result = true;
-    result  = this->firm == name;
-    if (result){
+    result = this->firm == name;
+    if (result) {
         std::cout << *this;
     }
-
 }
 
 void Bow::readFromFileBow(std::ifstream &f) {
@@ -96,23 +95,6 @@ float Instrument::getSize() const {
     return this->size;
 }
 
-std::ostream& operator<< (std::ostream &output, const Instrument& instrument) {
-
-    output << "Type: " << instrument.type << std::endl;
-    output << "Firm: " << instrument.firm << std::endl;
-    output << "Production year: " << instrument.year << std::endl;
-    output << "Instrument`s size: " << instrument.size << std::endl;
-
-    output << "Bow weight: " << instrument.bow.getWeight() << std::endl;
-    switch (instrument.bow.getMat()) {
-        case BT: output << "Bow material: Brazilian Tree" << std::endl << std::endl;
-            break;
-        case PERNAMBUCO: output << "Bow material: Pernambuco" << std::endl << std::endl;
-            break;
-        case FIBERGLASS: output << "Bow material: Fiberglass" << std::endl << std::endl;
-    }
-    return output;
-}
 
 std::istream& operator>> (std::istream &input, Bow& bow){
     int a;
@@ -132,3 +114,65 @@ std::istream& operator>> (std::istream &input, Instrument& instrument){
 
     return input;
 }
+std::ostream& operator<< (std::ostream &output, const Violin& violin) {
+    switch (violin.getVType()) {
+        case SOLO: output << "Solo" << std::endl << std::endl;
+            break;
+        case ORCHESTRAL: output << "Orchestral" << std::endl << std::endl;
+            break;
+        case UNIVERSAL: output << "Universal" << std::endl << std::endl;
+    }
+    return output;
+}
+
+
+string Instrument::getInfo() const {
+    std::stringstream ss;
+    //ss << "Figure with center [" << center.x << ";" << center.y << "]";
+    ss << "Type: " << type << endl;
+    ss << "Firm: " << firm << endl;
+    ss << "Production year: " << year << endl;
+    ss << "Instrument`s size: " << size << endl;
+
+    ss << "Bow weight: " << bow.getWeight() << endl;
+    switch (bow.getMat()) {
+        case BT: ss << "Bow material: Brazilian Tree" << endl << endl;
+            break;
+        case PERNAMBUCO: ss << "Bow material: Pernambuco" << endl << endl;
+            break;
+        case FIBERGLASS: ss << "Bow material: Fiberglass" << endl << endl;
+    }
+
+    return ss.str();
+}
+
+string Violin::getInfo() const{
+    {// we have to set `override` keyword for overridden methods (and base method – virtual)
+        std::stringstream ss;
+        ss << Instrument::getInfo();
+        ss << "Violin's characteristics: " << std::endl;
+        switch (this->violinType) {
+            case SOLO: ss << "Solo" << std::endl << endl;
+                break;
+            case ORCHESTRAL: ss << "Orchestral" << std::endl << endl;
+                break;
+            case UNIVERSAL: ss << "Universal" << std::endl << std::endl;
+        }
+        if (this->hasBridge) {
+            ss << "Has Bridge: Yes" << std::endl;
+        } else{
+            ss << "Has Bridge: No" << std::endl;
+        }
+        if (this->hasChinRest) {
+            ss << "Has Chin Rest: Yes" << std::endl;
+        } else {
+            ss << "Has Chin Rest: No" << std::endl;
+        }
+
+        return ss.str();
+    }
+
+}
+
+
+

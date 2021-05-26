@@ -11,6 +11,7 @@ void List:: addInstrument(Instrument& instrument){
     Instrument** new_array = new Instrument*[this->count + 1];
 
     for (int i = 0; i < this->count; ++i) {
+        //this->operator[](i);
         new_array[i + 1] = this->instrument[i];
     }
     new_array[0] = new Instrument(instrument);
@@ -53,7 +54,8 @@ void List::findTheOldestInstr(std::string& name) {
 void List:: showInstrument() {
     //getInstrument(0);
     for (int i = 0; i < this->count; ++i) {
-        std::cout << *instrument[i];
+        cout << *instrument[i];
+        cout << endl;
     }
 }
 
@@ -85,4 +87,46 @@ void List::writeInFile(std::string outputFile) {
 }
 
 
+void ViolinList::addViolin(Violin &violin) {
 
+    Violin** new_arr = new Violin*[this->num + 1];
+
+    for (int i = 0; i < this->num; ++i) {
+        //this->operator[](i);
+        new_arr[i + 1] = this->violins[i];
+    }
+    new_arr[0] = new Violin(violin);
+    //this->instrument[0]("Acoustic", "Stenor", 1985, 1.5f, Bow(300, PERNAMBUCO));
+    delete this->violins;
+    this->violins = new_arr;
+    this->num++;
+}
+
+void ViolinList:: showViolin() {
+    //getInstrument(0);
+    for (int i = 0; i < this->num; ++i) {
+        //std::cout << violins[i];
+         std::cout << violins[i] << endl;
+    }
+}
+
+void ViolinList::removeViolin(size_t pos) {
+    std::cout << "Delete element from list:" <<std::endl;
+    Violin** new_array = new Violin*[this->num - 1];
+    //List::getInstrument(pos);
+    if (this->num == 0) return; // nothing to delete
+
+    for (int i = 0; i < pos; ++i) {
+        new_array[i] = this->violins[i];
+    }
+    for (int i = pos; i < num - 1; ++i) {
+        new_array[i] = this->violins[i + 1];
+    }
+    // delete instrument[]
+    if (pos >= this->num) {
+        pos = this->num - 1;
+    }
+    delete[] this->violins;
+    this->violins = new_array;
+    this->num--;
+}

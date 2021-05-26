@@ -52,6 +52,7 @@ int main() {
     list->writeInFile("/home/kate/Стільниця/instrumentsOut.txt");
     std::cout << "end" << std::endl;
 
+
     Instrument instrument;
   ///  instrument = list->getInstrument(3);
     list->removeInstrument(3);
@@ -61,10 +62,22 @@ int main() {
     Instrument i;
     std::string str = "Classic,Yamaha,1805,0.5f";
     i.getInstrumentFromString(str);
+    Instrument in("Acoustic", "Stenor", 1985, 1.5f, Bow(300, PERNAMBUCO));
 
-    //list->addInstrument(i);
-    //list->showInstrument();
+    ViolinList * violinList = new ViolinList();
+    Violin violin(Instrument("Acoustic", "Stenor", 1985, 1.5f, Bow(300, PERNAMBUCO)), true, false, SOLO);
+    violinList->addViolin(violin);
+    Violin violin2(Instrument("Classic", "Yamaha", 2001, 1.0f, Bow(100, FIBERGLASS)), false, true, ORCHESTRAL);
+    violinList->addViolin(violin2);
+    Violin violin3(Instrument("Classic", "Celicio", 1896, 0.5f, Bow(210, BT)), false, false, UNIVERSAL);
+    violinList->addViolin(violin3);
+    violinList->showViolin();
+    //violin.print();
+    //violinList->removeViolin(0);
+    //violinList->showViolin();
+    Violin v;
+    std::cout << v;
     delete list;
-
+    delete violinList;
     return 0;
 }
