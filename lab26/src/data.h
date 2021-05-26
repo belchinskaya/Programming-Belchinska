@@ -101,10 +101,6 @@ Instrument(const Instrument& copy): year(copy.year), size(copy.size), bow(copy.b
         return this->firm == name;
     }
 
-    bool operator == (const Instrument& other) const {
-        return this->firm == other.firm && this->type == other.type && this->size == other.size && this->bow.getWeight() == other.bow.getWeight();
-
-    }
     bool operator != (const Instrument& other) const {
         return !(this->firm == other.firm);
     }

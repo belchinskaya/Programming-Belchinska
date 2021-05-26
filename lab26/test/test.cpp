@@ -5,8 +5,7 @@ bool test_getInstrumentFromString(){
     std::cout << "Actual instrument: " << std::endl;
     std::string expectedStr = "Acoustic,Stenor,1985,1.5f";
     Instrument actual = actual.getInstrumentFromString(expectedStr);
-    //if (actual.getType() == expected.getType() && actual.getFirm() == expected.getFirm() && actual.getYear() == expected.getYear()) {
-    if (actual == expected) {
+    if (actual.getType() == expected.getType() && actual.getFirm() == expected.getFirm() && actual.getYear() == expected.getYear()) {
         result = true;
     } else {
         result = false;
