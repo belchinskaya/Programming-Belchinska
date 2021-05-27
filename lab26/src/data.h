@@ -78,9 +78,7 @@ protected:
     float size;
     Bow bow;
 public:
-Instrument(): type(), firm(), year(0), size(0), bow(0, BT){
-
-}
+Instrument(): type(), firm(), year(0), size(0), bow(0, BT){}
 Instrument (const string& t, const string& f, const int year, const float size, const Bow& bow ): type(t), firm(f), year(year), size(size), bow(bow){
     type = t;
     firm = f;
@@ -116,8 +114,6 @@ Instrument(const Instrument& copy): type(copy.type), firm(copy.firm), year(copy.
         return out;
     }
     virtual string getInfo() const;
-
-    //void print() const;
     void readElementFromFile(std::ifstream &f);
     void writeInFileInstr(std::ofstream &f) const;
 
@@ -145,60 +141,67 @@ protected:
     bool hasChinRest;
     enum ViolinType violinType;
 public:
-    //Violin(Instrument instrument, bool hasBridge, bool hasChinRest, ViolinType type) {
+    Violin() : Instrument(), hasBridge(false), hasChinRest(false), violinType(SOLO) {    }
 
-    //}
-    Violin() : Instrument(), hasBridge(), hasChinRest(), violinType() {
-
-    }
-    Violin( Instrument(string& type, string &firm, const int year, const float size, Bow &bow), bool hasBridge,
-            bool hasChinRest, ViolinType violinType) : Instrument(type, firm, year, size, bow), hasBridge(hasBridge),
-                                                      hasChinRest(hasChinRest), violinType(violinType) {
-
-    }
-    Violin(string &t, string &f, const int year, const float size, Bow &bow, const Violin& copyV): Instrument(t, f, year, size, bow), hasBridge(copyV.hasBridge), hasChinRest(copyV.hasChinRest), violinType(copyV.violinType){
-
-    }
-
-    ~Violin() override = default;     // + TODO copy ctor; Inherited dtoc can be declared without ‘virtual’ keyword
+    Violin(string &t, string &f, const int year, const float size, Bow &bow, bool hasBridge, bool hasChinRest, ViolinType violinType): Instrument(t, f, year, size, bow), hasBridge(hasBridge), hasChinRest(hasChinRest), violinType(violinType) {    }
+    Violin(const Violin& copyV):Instrument(copyV), hasBridge(copyV.hasBridge), hasChinRest(copyV.hasChinRest), violinType(copyV.violinType) {    }
+    ~Violin() override = default;
 
 
     ViolinType getVType() const {
         return violinType;
     }
-
     void setViolinType(ViolinType vType) {
         Violin::violinType = vType;
     }
-
-    bool getHasBridge() {
+    bool getHasBridge() const{
         return hasBridge;
     }
-
     void setHasBridge(bool Bridge) {
         Violin::hasBridge = Bridge;
     }
-
-    bool getHasChinRest() {
+    bool getHasChinRest() const{
         return hasChinRest;
     }
-
     void setHasChinRest(bool ChinRest) {
         Violin::hasChinRest = ChinRest;
     }
+    void readFromFileViolin(std::ifstream &f);
 
-    string getInfo() const ;
+    string getInfo() const override;
 
-    //Violin(Instrument instrument, bool b, bool b1, ViolinType type);
+
 };
-class Contrabass: Instrument {
+class Contrabass: public Instrument {
 protected:
     bool hasExtraString;
     int endpinLength;
 public:
-    Contrabass(): hasExtraString(false), endpinLength(0){
 
+    Contrabass() : Instrument(), hasExtraString(false), endpinLength(0) {    }
+
+    Contrabass(string &t, string &f, int year, const float size, Bow &bow, bool hasExtraString, int length): Instrument(t, f, year, size, bow), hasExtraString(hasExtraString), endpinLength(length) {}
+    Contrabass(const Contrabass& copyB):
+            Instrument(copyB),
+            hasExtraString(copyB.hasExtraString), endpinLength(copyB.endpinLength) {    }
+    ~Contrabass() override = default;
+
+    void readFromFileContrabass(std::ifstream &f);
+    bool getHasExtraString() const {
+        return hasExtraString;
     }
+    void setHasExtraString(bool hasExtrString) {
+        Contrabass::hasExtraString = hasExtrString;
+    }
+    int getEndpinLength() const{
+        return endpinLength;
+    }
+    void setEndpinLength(int length) {
+        Contrabass::endpinLength = length;
+    }
+
+    string getInfo() const override;
+
 };
 
 

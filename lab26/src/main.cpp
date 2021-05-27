@@ -1,83 +1,74 @@
 /**
  * @mainpage
  * # Індивідуальне завдання
- * @brief Для предметної галузі з розділу “Розрахункове завдання / Індивідуальне завдання”
- * розробити два класи: - клас, що відображає сутність “базового класу”, у тому числі: -
- * конструктор за замовчуванням, копіювання та конструктор з аргументами (реалізація конструкторів
- * повинна бути продемонстрована за допомогою списків інціалізацій); - деструктор; - клас, що має у собі
- * динамічний масив об’єктів базового класу та має в собі методи додавання, видалення елемента, отримання
- * елемента по індексу (або ідентифікатору), вивід усіх елементів на екран.
- * @date 26-april-2021
+ * @brief Модернізувати попередню роботу шляхом:
+ * * додавання класів-спадкоємців з розділу “Розрахункове завдання / Індивідуальні завдання”,
+ * котрі будуть поширювати функціонал “базового класу” відповідно до базового класу;
+ * * додавання ще класу–списку для кожного класу-спадкоємцю,
+ * що буде керувати лише елементами стосовно класу-спадкоємця;
+ * @date 27-may-2021
  * @version 1.0
  */
 
 #include "list.h"
 /**
- * @file main.c
+ * @file main.cpp
  * @brief Головний файл з викликом функцій,
  * виділенням пам'яті для динамічних масивів та заданням вхідного тексту.
  *
  *
  * @author Belchynska K.
- * @date 17-march-2021
+ * @date 27-may-2021
  * @version 1.0
  */
 
 /**
  * Головна функція.
  *
- * Послідовність дій:
- * -
- * -
- * -
- * -
- * -
- * -
- * -
- * -
- * -
- * -
- * -
+ * - Додавання елементів в список інструментів
+ * - Додавання елементів в список скрипок
+ * - Додавання елементів в список контрабасів
+ * - Вивід на екран списків
+ * - Видалення елементу зі списку
  *
  * @return 0 при успішному завершенні програми
  */
 int main() {
-
-    List * list = new List();
-    std::cout << "From file" << std:: endl;
-    std::string fileName = "/home/kate/Стільниця/instruments.txt";
-    list->readFromFile(fileName);
-
+    //List * list = new List();
+    //cout << "From file" << std:: endl;
+    //string fileName = "/home/kate/Стільниця/instruments.txt";
+    //list->readFromFile(fileName);
     //list->showInstrument();
-    list->writeInFile("/home/kate/Стільниця/instrumentsOut.txt");
-    std::cout << "end" << std::endl;
-
-
-    Instrument instrument;
-  ///  instrument = list->getInstrument(3);
-    list->removeInstrument(3);
-    list->showInstrument();
-    std::string name = "Yamaha";
-    list->findTheOldestInstr(name);
-    Instrument i;
-    std::string str = "Classic,Yamaha,1805,0.5f";
-    i.getInstrumentFromString(str);
-    Instrument in("Acoustic", "Stenor", 1985, 1.5f, Bow(300, PERNAMBUCO));
+    //list->writeInFile("/home/kate/Стільниця/instrumentsOut.txt");
+    //cout << "end" << endl;
+    //Instrument instrument;
+    //list->removeInstrument(3);
+    //list->showInstrument();
+    //std::string name = "Yamaha";
+    //list->findTheOldestInstr(name);
+    //Instrument i;
+    //std::string str = "Classic,Yamaha,1805,0.5f";
+    //i.getInstrumentFromString(str);
 
     ViolinList * violinList = new ViolinList();
-    Violin violin(Instrument("Acoustic", "Stenor", 1985, 1.5f, Bow(300, PERNAMBUCO)), true, false, SOLO);
-    violinList->addViolin(violin);
-    Violin violin2(Instrument("Classic", "Yamaha", 2001, 1.0f, Bow(100, FIBERGLASS)), false, true, ORCHESTRAL);
-    violinList->addViolin(violin2);
-    Violin violin3(Instrument("Classic", "Celicio", 1896, 0.5f, Bow(210, BT)), false, false, UNIVERSAL);
-    violinList->addViolin(violin3);
+    string violinFileName = "/home/kate/Стільниця/ViolinIn.txt";
+    violinList->readFromFileViolinList(violinFileName);
     violinList->showViolin();
-    //violin.print();
-    //violinList->removeViolin(0);
-    //violinList->showViolin();
-    Violin v;
-    std::cout << v;
-    delete list;
+    //Violin violin("t", "f", 100, 1.0f, Bow(10,BT), true, false, SOLO);
+    //violinList->addViolin(violin);
+    violinList->removeViolin(0);
+    violinList ->showViolin();
+    cout << "end violin list" << endl << endl << "Contrabass" << endl;
+
+    ContrabassList * contrabassList = new ContrabassList();
+    string contrabassFileName = "/home/kate/Стільниця/ContrabassIn.txt";
+    contrabassList->readFromFileContrabassList(contrabassFileName);
+    contrabassList->showContrabass();
+    contrabassList->removeContrabass(1);
+    contrabassList ->showContrabass();
+
+    //delete list;
     delete violinList;
+    delete contrabassList;
     return 0;
 }

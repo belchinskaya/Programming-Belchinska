@@ -83,6 +83,7 @@ public:
     ViolinList() : num(0) {
 
     }
+    void readFromFileViolinList(string& fileName);
 
     ViolinList(const ViolinList &copy) : num(copy.num) {
         violins = new Violin *[num];
@@ -114,7 +115,7 @@ public:
     ContrabassList() : size(0) {
 
     }
-
+    void readFromFileContrabassList(string& fileName);
     ContrabassList(const ContrabassList &copy) : size(copy.size) {
         contrabasses = new Contrabass *[size];
         for (int i = 0; i < size; ++i) {
@@ -127,4 +128,10 @@ public:
     void removeContrabass(size_t pos);
 
     void showContrabass();
+    virtual ~ContrabassList() {
+        for (int i = 0; i < size; ++i) {
+            delete contrabasses[i];
+        }
+        delete[] contrabasses;
+    }
 };

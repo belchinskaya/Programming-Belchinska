@@ -1,6 +1,5 @@
 #include "list.h"
 #include "data.h"
-#define INSTRUMENT_COUNT 6
 
 Instrument& List:: getInstrument(size_t index){
     return *instrument[index];
@@ -11,11 +10,10 @@ void List:: addInstrument(Instrument& instrument){
     Instrument** new_array = new Instrument*[this->count + 1];
 
     for (int i = 0; i < this->count; ++i) {
-        //this->operator[](i);
+        getInstrument(i);
         new_array[i + 1] = this->instrument[i];
     }
     new_array[0] = new Instrument(instrument);
-    //this->instrument[0]("Acoustic", "Stenor", 1985, 1.5f, Bow(300, PERNAMBUCO));
     delete this->instrument;
     this->instrument = new_array;
     this->count++;
@@ -25,17 +23,16 @@ void List:: removeInstrument(size_t pos) {
     Instrument** new_array = new Instrument*[this->count - 1];
     List::getInstrument(pos);
     if (this->count == 0) return; // nothing to delete
-
+    if (pos >= this->count) {
+        pos = this->count - 1;
+    }
     for (int i = 0; i < pos; ++i) {
         new_array[i] = this->instrument[i];
     }
     for (int i = pos; i < count - 1; ++i) {
         new_array[i] = this->instrument[i + 1];
     }
-   // delete instrument[]
-    if (pos >= this->count) {
-        pos = this->count - 1;
-    }
+
     delete[] this->instrument;
     this->instrument = new_array;
     this->count--;
@@ -55,7 +52,7 @@ void List:: showInstrument() {
     //getInstrument(0);
     for (int i = 0; i < this->count; ++i) {
         cout << *instrument[i];
-        cout << endl;
+
     }
 }
 
@@ -67,16 +64,40 @@ void List::readFromFile(std::string fileName) {
         Instrument instrument;
 
         instrument.readElementFromFile(fin);
-        //fin >> instrument;
-        std::cout << std::endl << std::endl;
         if (instrument.getFirm() != ""){
             addInstrument(instrument);
-            std::cout << instrument;
         }
     }
     fin.close();
 }
+void ViolinList::readFromFileViolinList(string& fileName) {
+    std::ifstream fin;
+    fin.open(fileName);
 
+    while (!fin.eof()) {
+        Violin violin;
+
+        violin.readFromFileViolin(fin);
+        if (violin.getYear() != 0){
+            addViolin(violin);
+        }
+    }
+    fin.close();
+}
+void ContrabassList::readFromFileContrabassList(string &fileName) {
+    std::ifstream fin;
+    fin.open(fileName);
+
+    while (!fin.eof()) {
+        Contrabass contrabass;
+
+        contrabass.readFromFileContrabass(fin);
+        if (contrabass.getYear() != 0){
+            addContrabass(contrabass);
+        }
+    }
+    fin.close();
+}
 void List::writeInFile(std::string outputFile) {
     std::ofstream fout;
     fout.open(outputFile);
@@ -103,16 +124,14 @@ void ViolinList::addViolin(Violin &violin) {
 }
 
 void ViolinList:: showViolin() {
-    //getInstrument(0);
     for (int i = 0; i < this->num; ++i) {
-        //std::cout << violins[i];
-         std::cout << violins[i] << endl;
+        cout << *violins[i] << endl;
     }
 }
 
 void ViolinList::removeViolin(size_t pos) {
     std::cout << "Delete element from list:" <<std::endl;
-    Violin** new_array = new Violin*[this->num - 1];
+    Violin** new_array = new Violin*[this->num];
     //List::getInstrument(pos);
     if (this->num == 0) return; // nothing to delete
 
@@ -130,3 +149,43 @@ void ViolinList::removeViolin(size_t pos) {
     this->violins = new_array;
     this->num--;
 }
+
+void ContrabassList::addContrabass(Contrabass &contrabass) {
+
+    Contrabass** newArr = new Contrabass*[this->size + 1];
+
+    for (int i = 0; i < this->size; ++i) {
+        newArr[i + 1] = this->contrabasses[i];
+    }
+    newArr[0] = new Contrabass(contrabass);
+    delete this->contrabasses;
+    this->contrabasses = newArr;
+    this->size++;
+}
+void ContrabassList::removeContrabass(size_t pos) {
+    std::cout << "Delete element from list:" <<std::endl;
+    Contrabass** new_array = new Contrabass*[this->size];
+    //List::getInstrument(pos);
+    if (this->size == 0) return;
+
+    for (int i = 0; i < pos; ++i) {
+        new_array[i] = this->contrabasses[i];
+    }
+    for (int i = pos; i < size - 1; ++i) {
+        new_array[i] = this->contrabasses[i + 1];
+    }
+    // delete instrument[]
+    if (pos >= this->size) {
+        pos = this->size - 1;
+    }
+    delete[] this->contrabasses;
+    this->contrabasses = new_array;
+    this->size--;
+}
+
+void  ContrabassList::showContrabass() {
+    for (int i = 0; i < this->size; ++i) {
+        cout << *contrabasses[i] << endl;
+    }
+}
+
