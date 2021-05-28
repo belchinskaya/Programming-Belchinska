@@ -1,7 +1,7 @@
 #include "data.h"
 #define INSTRUMENT_COUNT 6
 /**
- * @file lib.c
+ * @file lib.cpp
  * @brief Файл з реалізацією функцій
  *
  * @author Belchynska K.
