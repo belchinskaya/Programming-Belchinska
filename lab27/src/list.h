@@ -10,7 +10,7 @@
  */
 class List {
     int count;
-    Instrument *instrument[];
+    Instrument **instrument;
 
 public:
     List() : count(0) {
@@ -23,24 +23,26 @@ public:
         //   instrument[i] = new Instrument(*copy.instrument[i]);
         //}
     }
-    virtual void readFromFile(string& fileName);
 
-    void writeInFile(string outputFile);
+
+    virtual void readFromFile(string& fileName, Instrument& instrument);
+
+    void readFromFile(string& fileName, Violin& violin);
 
     virtual Instrument &getInstrument(size_t index);
 
-    virtual void addInstrument();
+    virtual void addInstrument(Instrument &instrument1);
 
     virtual void removeInstrument(size_t pos);
 
-    virtual void showInstrument();
 
+    virtual void showInstrument(Violin& violin) ;
 
 
     virtual ~List() {
-        for (int i = 0; i < count; ++i) {
-            delete instrument[i];
-        }
+        //for (int i = 0; i < count; ++i) {
+        //    delete instrument[i];
+        //}
         //delete[] instrument;
     }
 
@@ -53,69 +55,4 @@ public:
 
 
 
-};
-
-/**
- * Список скрипок
- */
-class ViolinList {
-    Violin **violins;
-    int num;
-public:
-    ViolinList() : num(0) {
-
-    }
-
-
-    ViolinList(const ViolinList &copy) : num(copy.num) {
-        violins = new Violin *[num];
-        for (int i = 0; i < num; ++i) {
-            violins[i] = new Violin(*copy.violins[i]);
-        }
-
-    }
-
-    void addInstrument(Violin &violin);
-    void readFromFile(string& fileName);
-    void removeInstrument(size_t pos);
-
-    void showInstrument();
-    virtual ~ViolinList() {
-        for (int i = 0; i < num; ++i) {
-            delete violins[i];
-        }
-        delete[] violins;
-    }
-
-};
-
-/**
- * Список контрабасів
- */
-class ContrabassList {
-    Contrabass **contrabasses;
-    int size;
-public:
-    ContrabassList() : size(0) {
-
-    }
-    void readFromFile(string& fileName);
-    ContrabassList(const ContrabassList &copy) : size(copy.size) {
-        contrabasses = new Contrabass *[size];
-        for (int i = 0; i < size; ++i) {
-            contrabasses[i] = new Contrabass(*copy.contrabasses[i]);
-        }
-
-    }
-    void addInstrument(Contrabass &contrabass);
-
-    void removeInstrument(size_t pos);
-
-    void showInstrument();
-    virtual ~ContrabassList() {
-        for (int i = 0; i < size; ++i) {
-            delete contrabasses[i];
-        }
-        delete[] contrabasses;
-    }
 };

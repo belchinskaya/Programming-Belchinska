@@ -164,7 +164,7 @@ public:
     void readFromFileViolin(std::ifstream &f);
 
     string getInfo() const override;
-    void print() override;
+    void print() override final;
 
 
 };
@@ -197,5 +197,5 @@ public:
     }
 
     string getInfo() const override;
-    void print() override;
+    void print() override final;
 };

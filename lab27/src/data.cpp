@@ -8,13 +8,6 @@
  * @version 1.0
  */
 
-void Instrument:: printTheOldestInstrument(std::string& name) {
-    bool result = true;
-    result = this->firm == name;
-    if (result) {
-        std::cout << *this;
-    }
-}
 
 void Bow::readFromFileBow(std::ifstream &f) {
     f >> *this;
@@ -40,26 +33,7 @@ void Instrument::writeInFileInstr(std::ofstream &f) const{
     f << *this;
 }
 
-Bow& Bow::getBowFromString() {
-    std::string str = "300,2";
-    std::stringstream ss(str);
-    Bow bow;
-    std::string token;
-    std::stringstream tempSS3;
-    int a;
 
-    std::stringstream tempSS;
-    std::getline(ss, token, ',');
-    tempSS << token;
-    tempSS >> bow.weight;
-
-    std::stringstream tempSS4;
-    std::getline(ss, token, ',');
-    tempSS4 << token;
-    tempSS4 >> a;
-    bow.material = (Material) a;
-    return bow;
-}
 
 std::string& Instrument::getFirm() {
     return this->firm;

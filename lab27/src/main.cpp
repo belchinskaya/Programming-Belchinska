@@ -37,39 +37,27 @@
  * @return 0 при успішному завершенні програми
  */
 int main() {
-    //List * list = new List;
-    //cout << "From file" << std:: endl;
-    //string fileName = "/home/kate/Стільниця/instruments.txt";
-    //list->readFromFile(fileName);
-    //list->showInstrument();
+    string fileName = "/home/kate/Стільниця/instruments.txt";
+
     //list->writeInFile("/home/kate/Стільниця/instrumentsOut.txt");
-    //cout << "end" << endl;
-    //Instrument instrument;
-    //list->removeInstrument(3);
-    //list->showInstrument();
-    //std::string name = "Yamaha";
-    //list->findTheOldestInstr(name);
-
-    ViolinList * violinList = new ViolinList();
+    Instrument *instrument;
+    List * list = new List();
+    //list->readFromFile(fileName, *instrument);
     string violinFileName = "/home/kate/Стільниця/ViolinIn.txt";
-    violinList->readFromFile(violinFileName);
-    violinList->showInstrument();
-    //Violin violin("t", "f", 100, 1.0f, Bow(10,BT), true, false, SOLO);
-    //violinList->addViolin(violin);
-    violinList->removeInstrument(0);
-    violinList ->showInstrument();
-    cout << "end violin list" << endl << endl << "Contrabass" << endl;
+    Violin violin;
+    list->readFromFile(violinFileName, violin);
 
-    ContrabassList * contrabassList = new ContrabassList();
-    string contrabassFileName = "/home/kate/Стільниця/ContrabassIn.txt";
-    contrabassList->readFromFile(contrabassFileName);
-    contrabassList->showInstrument();
-    contrabassList->removeInstrument(1);
-    contrabassList ->showInstrument();
+    list->showInstrument(violin);
 
-    //delete list;
-    delete violinList;
-    delete contrabassList;
+    //list->addInstrument(violin);
+    //list->removeInstrument(0);
+    //Contrabass contrabass;
+
+    //list ->showInstrument(&contrabass);
+    //cout << "end violin list" << endl << endl << "Contrabass" << endl;
+
+    delete list;
+
     return 0;
 }
 
