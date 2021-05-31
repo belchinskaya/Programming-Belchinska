@@ -5,4 +5,4 @@ CMakeLists.txt
 .idea/
 instruments.txt
 instrumentsOut.txt
-core
+lab29/core
