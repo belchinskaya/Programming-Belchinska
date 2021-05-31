@@ -16,16 +16,16 @@ void Instrument::readElementFromFile(std::ifstream &f) {
     f >> *this;
     bow.readFromFileBow(f);
 }
-void Violin::readFromFileViolin(std::ifstream &f) {
-    readElementFromFile(f);
+void Violin::readElementFromFile(std::ifstream &f) {
+    Instrument::readElementFromFile(f);
     f >> this->hasBridge;
     f >> this->hasChinRest;
     int a;
     f >> a;
     this->violinType = (ViolinType) a;
 }
-void Contrabass::readFromFileContrabass(std::ifstream &f) {
-    readElementFromFile(f);
+void Contrabass::readElementFromFile(std::ifstream &f) {
+    Instrument::readElementFromFile(f);
     f >> this->hasExtraString;
     f >> this->endpinLength;
 }
@@ -104,11 +104,11 @@ string Violin::getInfo() const{
     ss << Instrument::getInfo();
     ss << "Violin's characteristics: " << std::endl;
     switch (this->violinType) {
-        case SOLO: ss << "Solo" << endl;
+        case SOLO: ss << "Violin Type: Solo" << endl;
             break;
-        case ORCHESTRAL: ss << "Orchestral" << endl;
+        case ORCHESTRAL: ss << "Violin Type: Orchestral" << endl;
             break;
-        case UNIVERSAL: ss << "Universal" << endl;
+        case UNIVERSAL: ss << "Violin Type: Universal" << endl;
     }
     if (this->hasBridge) {
         ss << "Has Bridge: Yes" << std::endl;

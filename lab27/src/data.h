@@ -109,7 +109,7 @@ public:
     }
     virtual string getInfo() const;
     virtual void print() = 0;
-    void readElementFromFile(std::ifstream &f);
+    virtual  void readElementFromFile(std::ifstream &f);
     void writeInFileInstr(std::ofstream &f) const;
 
     bool operator == (const std::string& name) const {
@@ -161,8 +161,8 @@ public:
     void setHasChinRest(bool ChinRest) {
         Violin::hasChinRest = ChinRest;
     }
-    void readFromFileViolin(std::ifstream &f);
-
+    //void readFromFileViolin(std::ifstream &f);
+    void readElementFromFile(std::ifstream &f) override final;
     string getInfo() const override;
     void print() override final;
 
@@ -182,7 +182,7 @@ public:
             hasExtraString(copyB.hasExtraString), endpinLength(copyB.endpinLength) {    }
     ~Contrabass() override = default;
 
-    void readFromFileContrabass(std::ifstream &f);
+    void readElementFromFile(std::ifstream &f) override final;
     bool getHasExtraString() const {
         return hasExtraString;
     }

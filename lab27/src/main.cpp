@@ -44,17 +44,11 @@ int main() {
     List * list = new List();
     //list->readFromFile(fileName, *instrument);
     string violinFileName = "/home/kate/Стільниця/ViolinIn.txt";
-    Violin violin;
-    list->readFromFile(violinFileName, violin);
+    string contrabassFileName = "/home/kate/Стільниця/ContrabassIn.txt";
+    Violin * violin = new Violin();
+    list->readFromFile(violinFileName, new Violin());
+    list->readFromFile(contrabassFileName, new Contrabass());
 
-    list->showInstrument(violin);
-
-    //list->addInstrument(violin);
-    //list->removeInstrument(0);
-    //Contrabass contrabass;
-
-    //list ->showInstrument(&contrabass);
-    //cout << "end violin list" << endl << endl << "Contrabass" << endl;
 
     delete list;
 
