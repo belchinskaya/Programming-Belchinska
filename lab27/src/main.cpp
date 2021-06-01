@@ -47,9 +47,13 @@ int main() {
     string contrabassFileName = "/home/kate/Стільниця/ContrabassIn.txt";
     Violin * violin = new Violin();
     list->readFromFile(violinFileName, new Violin());
+    list->showInstrument();
+    list->removeInstrument(1);
+    list->showInstrument();
+    //list->showInstrument(new Violin());
     list->readFromFile(contrabassFileName, new Contrabass());
 
-
+    //list->addInstrument(new Violin());
     delete list;
 
     return 0;

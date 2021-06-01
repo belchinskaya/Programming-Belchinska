@@ -18,35 +18,21 @@ public:
     }
 
     List(const List &copy) : count(copy.count) {
-
-        //instrument = new Instrument *[count];
-        //for (int i = 0; i < count; ++i) {
-        //    instrument[i] = new Instrument(*copy.instrument[i]);
-        //    if (dynamic_cast<Violin*>(instrument[i]) == NULL){
-        //        Instrument *instrument1 = new Violin();
-        //    }
-        //
-        //}
         instrument = new Instrument *[count];
-        for (int i = 0; i < count; ++i) {
-            dynamic_cast<Violin*>(instrument[i]);
-        }
-
     }
 
 
     virtual void readFromFile(string& fileName, Instrument * instrument);
 
-    //void readFromFile(string& fileName, Violin& violin);
 
     virtual Instrument &getInstrument(size_t index);
 
-     void addInstrument(Instrument * instrument1);
+    void addInstrument(Instrument * instrument1, int pos);
 
-    //virtual void removeInstrument(size_t pos, Instrument ** pInstrument);
+    virtual void removeInstrument(size_t pos);
 
 
-    virtual void showInstrument(Instrument * instrument) ;
+    virtual void showInstrument() ;
 
 
     virtual ~List() {

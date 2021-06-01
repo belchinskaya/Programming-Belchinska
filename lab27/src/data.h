@@ -102,12 +102,12 @@ public:
         Instrument::bow = bow1;
     }
 
-
-    friend std::ostream& operator<<(std::ostream& out, const Instrument &instrument) {   // no way to override operators
-        out << instrument.getInfo();
-        return out;
-    }
     virtual string getInfo() const;
+    friend std::ostream& operator<<(std::ostream& out, const Instrument &instrument)  {   // no way to override operators
+        out << instrument.getInfo();
+       return out;
+    }
+
     virtual void print() = 0;
     virtual  void readElementFromFile(std::ifstream &f);
     void writeInFileInstr(std::ofstream &f) const;
